@@ -1,0 +1,24 @@
+<h4>
+    <a href="/catalog/admin">Trang chủ Admin</a>
+</h4>
+<h2>DANH SÁCH NHÀ SẢN XUẤT</h2>
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th class="text-center">Tên</th>
+            <th class="text-center">Hình</th>
+            <th class="text-center">Trung tâm bảo hành</th>
+        </tr>
+    </thead>
+    {{#each nhasanxuat_list}}
+    <tbody>
+        <tr>
+            <td>{{this.ten}}</td>
+            <td><img src="{{this.hinh}}" style="width: 100px;"></td>
+            <td>{{this.trungtambaohanh}}</td>
+        </tr>
+    </tbody>
+    {{/each}}
+</table>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>

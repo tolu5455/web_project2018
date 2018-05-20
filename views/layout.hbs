@@ -1,29 +1,235 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Store</title>
-    
-    <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-    
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/stylesheets/owl.carousel.css">
-    <link rel="stylesheet" href="/stylesheets/style1.css">
-    <link rel="stylesheet" href="/stylesheets/responsive.css">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Store</title>
+
+  <!-- Google Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/stylesheets/owl.carousel.css">
+  <link rel="stylesheet" href="/stylesheets/style1.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.css">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="/stylesheets/search.css">
+  <link href="/stylesheets/admin_bootstrap.css" rel="stylesheet" />
+  <link href="/stylesheets/admin_custom.css" rel="stylesheet" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+</head>
+
+<body>
+  <div class="header-area">
+    <div class="container">
+      <div class="row">
+        <div class="text-right">
+          <div class="user-menu">
+            <ul>
+              <li>
+                <a href="/catalog/admin">
+                  <i class="fa fa-user"></i> Đăng nhập</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mainmenu-area">
+    <div class="container">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav">
+            <h1>
+              <a href="/">
+                <img src="../../images/logo.png">
+              </a>
+            </h1>
+            <li class="{{active1}}">
+              <a href="/">Trang chủ</a>
+
+            </li>
+            <li class="{{active2}}">
+              <a href="/catalog/laptops">Sản phẩm</a>
+            </li>
+            <li>
+              <div class="dropdown">
+                <span class="dropbtn">Hãng laptop</span>
+                <div class="dropdown-content">
+                  <a href="{{nhasanxuat_list.0.url}}">{{nhasanxuat_list.0.ten}}</a>
+                  <a href="{{nhasanxuat_list.1.url}}">{{nhasanxuat_list.1.ten}}</a>
+                  <a href="{{nhasanxuat_list.2.url}}">{{nhasanxuat_list.2.ten}}</a>
+                  <a href="{{nhasanxuat_list.3.url}}">{{nhasanxuat_list.3.ten}}</a>
+                  <a href="{{nhasanxuat_list.4.url}}">{{nhasanxuat_list.4.ten}}</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <form id="searchthis" action="/catalog/search" style="display:inline;" method="get" autocomplete="off">
+            <div class="autocomplete">
+              <input id="namanyay-search-box" name="ten" size="40" type="text" placeholder="Tên sản phẩm..." />
+              <input id="namanyay-search-btn" value="Tìm kiếm" type="submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{{body}}}
+  <div class="footer-top-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-about-us">
+            <h2>ftw
+              <span>Store</span>
+            </h2>
+            <p>We sell best-qualified laptops with a good price you can never expect it. Trust us we are always by your side
+            </p>
+            <div class="footer-social">
+              <a href="#" target="_blank">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a href="#" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a href="#" target="_blank">
+                <i class="fa fa-youtube"></i>
+              </a>
+              <a href="#" target="_blank">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-menu">
+            <h2 class="footer-wid-title">Định hướng</h2>
+            <ul>
+              <li>
+                <a href="#">Tài khoản</a>
+              </li>
+              <li>
+                <a href="/catalog/laptops">Tất cả sản phẩm</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-menu">
+            <h2 class="footer-wid-title">Các hãng Laptop</h2>
+            <ul>
+              <li>
+                <a href="{{nhasanxuat_list.0.url}}">{{nhasanxuat_list.0.ten}}</a>
+              </li>
+              <li>
+                <a href="{{nhasanxuat_list.1.url}}">{{nhasanxuat_list.1.ten}}</a>
+              </li>
+              <li>
+                <a href="{{nhasanxuat_list.2.url}}">{{nhasanxuat_list.2.ten}}</a>
+              </li>
+              <li>
+                <a href="{{nhasanxuat_list.3.url}}">{{nhasanxuat_list.3.ten}}</a>
+              </li>
+              <li>
+                <a href="{{nhasanxuat_list.4.url}}">{{nhasanxuat_list.4.ten}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="footer-newsletter">
+            <h2 class="footer-wid-title">Tài khoản</h2>
+            <p>Đăng nhập để cửa hàng có thể gửi những thông tin khuyến mãi hấp dẫn nhất cho bạn!</p>
+            <br class="newsletter-form">
+            <a href="#">Đăng nhập</a>
+            </br>
+            </br>
+            <a href="#">Đăng ký</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- End footer top area -->
+
+  <div class="footer-bottom-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="copyright">
+            <p>&copy; 2018 copyright. All Rights Reserved.
+              <a href="/">ftwStore</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="footer-card-icon">
+            <i class="fa fa-cc-discover"></i>
+            <i class="fa fa-cc-mastercard"></i>
+            <i class="fa fa-cc-paypal"></i>
+            <i class="fa fa-cc-visa"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span id="list_laptop" style="display:none">{{#each laptop_list}}{{this.ten}},{{/each}}end,
+  </span>
+  <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+
+  <!-- Latest jQuery form server -->
+  <script src="https://code.jquery.com/jquery.min.js"></script>
+
+  <!-- Bootstrap JS form CDN -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <!-- jQuery sticky menu -->
+  <script src="/javascripts/owl.carousel.min.js"></script>
+  <script src="/javascripts/jquery.sticky.js"></script>
+
+  <!-- jQuery easing -->
+  <script src="/javascripts/jquery.easing.1.3.min.js"></script>
+
+  <!-- Main Script -->
+  <script src="/javascripts/main.js"></script>
+
+  <!-- Slider -->
+  <script type="text/javascript" src="/javascripts/bxslider.min.js"></script>
+  <script type="text/javascript" src="/javascripts/script.slider.js"></script>
+  <script type="text/javascript" src="/javascripts/index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="/javascripts/search.js"></script>
+</body>
+
+
 </html>

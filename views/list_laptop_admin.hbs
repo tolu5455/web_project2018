@@ -1,0 +1,36 @@
+<h4>
+    <a href="/catalog/admin">Trang chủ Admin</a>
+</h4>
+<h2>DANH SÁCH LAPTOP</h2>
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th class="text-center">Mã số</th>
+            <th class="text-center">Tên</th>
+            <th class="text-center">Hình</th>
+            <th class="text-center">Giá bán</th>
+            <th class="text-center">Giá mua</th>
+            <th class="text-center">Nhà sản xuất</th>
+            <th class="text-center">Chi tiết</th>
+        </tr>
+    </thead>
+    {{#each laptop_list}}
+    <tbody>
+        <tr>
+            <td>{{this.maso}}</td>
+            <td>{{this.ten}}</td>
+            <td>
+                <img src="{{this.hinh}}" style="width: 100px;">
+            </td>
+            <td>{{this.giaban}}</td>
+            <td>{{this.gianhap}}</td>
+            <td>{{this.nhasanxuat.ten}}</td>
+            <td>
+                <a href="{{this.url}}">Xem chi tiết</a>
+            </td>
+        </tr>
+    </tbody>
+    {{/each}}
+</table>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
