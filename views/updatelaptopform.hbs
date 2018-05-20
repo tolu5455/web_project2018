@@ -1,0 +1,105 @@
+<style>
+    .container1 {
+        padding: 50px;
+    }
+
+    /* Full-width input fields */
+
+    input[type=text] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    button:hover {
+        opacity: 1;
+    }
+
+    .btnupdate {
+        width: 150px;
+
+
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+</style>
+<h4 style="margin-left: 100px; margin-top: 40px">
+    <a href="/catalog/admin">Trang chủ Admin</a>
+</h4>
+<form class="modal-content" action="/catalog/update">
+    <div class="container1">
+        <div class="row">
+            <h1>Cập nhật thông tin laptop</h1> <br>
+            <div style="color: rgb(0, 202, 0)">
+                    <span>{{thongbao}}</span>
+                </div>
+            <label>
+                <b>Tên laptop muốn cập nhật</b>
+            </label>
+
+            <div class="autocomplete">
+              <input id="namanyay-search-box1" name="ten" size="40" type="text" placeholder="Tên sản phẩm..." autocomplete="off"/>
+            </div>
+
+        </div>
+        <hr>
+        <label>
+            <b>Mã số</b>
+        </label>
+        <input type="text" placeholder="Nhập mã số" name="maso">
+
+        <label>
+            <b>Tên</b>
+        </label>
+        <input type="text" placeholder="Nhập tên" name="ten1">
+
+        <label>
+            <b>Giá bán</b>
+        </label>
+        <input type="text" placeholder="Nhập giá bán" name="giaban">
+
+        <label>
+            <b>Giá nhập</b>
+        </label>
+        <input type="text" placeholder="Nhập giá bán" name="gianhap">
+
+        <label>
+            <b>Ram</b>
+        </label>
+        <input type="text" placeholder="Nhập ram" name="ram">
+
+        <label>
+            <b>CPU</b>
+        </label>
+        <input type="text" placeholder="Nhập CPU" name="cpu">
+
+        <label>
+            <b>Màn hình</b>
+        </label>
+        <input type="text" placeholder="Nhập màn hình" name="manhinh">
+
+        <div class="text-center">
+            <button type="submit" class="btnupdate">Cập nhật</button>
+        </div>
+    </div>
+</form>
