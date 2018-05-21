@@ -18,13 +18,22 @@ router.get('/admin', laptop_controller.laptop_admin);
 
 router.get('/danhsachlaptop_admin', laptop_controller.laptop_list_admin);
 
+
+
 router.get('/danhsachnsx_admin', laptop_controller.nsx_list_admin);
 
 router.get('/updatelaptopform', laptop_controller.laptop_update_form);
 
 router.get('/updatensxform', laptop_controller.nsx_update_form);
+router.get('/removelaptopform',laptop_controller.laptop_remove_form);
+router.get('/removensxform',laptop_controller.nsx_remove_form);
+
+
 
 router.get('/update', laptop_controller.laptop_update);
-
 router.get('/update2', laptop_controller.laptop_update2);
+router.get('/remove', laptop_controller.laptop_remove);
+router.get('/remove2', laptop_controller.laptop_remove2);
+
+
 module.exports = router;

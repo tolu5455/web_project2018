@@ -46,15 +46,15 @@
 <h4 style="margin-left: 100px; margin-top: 40px">
     <a href="/catalog/admin">Trang chủ Admin</a>
 </h4>
-<form class="modal-content" action="/catalog/update2">
+<form class="modal-content" action="/catalog/remove2">
     <div class="container1">
         <div class="row">
-            <h1>Cập nhật thông tin nhà sản xuất</h1> <br>
+            <h1>Xóa nhà sản xuất</h1> <br>
             <div style="color: rgb(0, 202, 0)">
                     <span>{{thongbao}}</span>
                 </div>
             <label>
-                <b>Tên nhà sản xuất muốn cập nhật</b>
+                <b>Tên nhà sản xuất muốn xóa</b>
             </label>
 
             <div class="autocomplete">
@@ -64,18 +64,9 @@
         </div>
         <hr>
 
-        <label>
-            <b>Tên</b>
-        </label>
-        <input type="text" placeholder="Nhập tên" name="ten1">
-
-        <label>
-            <b>Trung tâm bảo hành</b>
-        </label>
-        <input type="text" placeholder="Nhập địa chỉ" name="ttbh">
 
         <div class="text-center">
-            <button type="submit" class="btnupdate">Cập nhật</button>
+            <button type="submit" class="btnremove">Xóa</button>
         </div>
     </div>
 </form>

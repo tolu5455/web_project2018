@@ -25,6 +25,9 @@ exports.index = function(req, res) {
       res.render("index", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, active1: 'active'});
     });
 };
+ // exports.removelaptopform = function(req, res) {
+   // res.render("removelaptopform");
+//}
 
 exports.laptop_list = function(req, res) {
     async.parallel({
@@ -252,6 +255,52 @@ exports.nsx_update_form = function(req,res){
     });
 }
 
+
+
+exports.laptop_remove_form = function(req,res){
+  async.parallel({
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback); 
+    },
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+  }
+      res.render("removelaptopform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat});
+    });
+}
+
+
+exports.nsx_remove_form = function(req,res){
+  async.parallel({
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback); 
+    },
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+  }
+      res.render("removensxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat});
+    });
+}
 exports.laptop_update = function(req,res){
   var _ten = req.query.ten;
   var _maso = req.query.maso;
@@ -339,3 +388,77 @@ exports.laptop_update2 = function(req,res){
       res.render("updatensxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Cập nhật thành công"});
     });
 }
+
+
+
+
+
+exports.laptop_remove = function(req,res){
+
+  var _ten = req.query.ten;
+
+  async.parallel({
+    laptopupdate: function(callback){
+      Laptop.findOne({'ten' : _ten}, function(err, laptop){
+        if(err) return next(err);
+        Laptop.findOneAndRemove({'ten' : _ten},function(err, laptop){
+        if(err) return next(err);
+        })
+      }).exec(callback);  
+    },
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback);
+    },
+    
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+  }
+      res.render("removelaptopform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Xóa thành công"});
+    });
+
+}
+
+exports.laptop_remove2 = function(req,res){
+  var _ten = req.query.ten;
+
+  async.parallel({
+    nsxupdate: function(callback){
+      Nhasanxuat.findOne({'ten' : _ten}, function(err, nsx){
+        if(err) return next(err);
+       
+        Nhasanxuat.findOneAndRemove({'ten' : _ten},function(err, nsxresult){
+        if(err) return next(err);
+        })
+      }).exec(callback);  
+    },
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback);
+    },
+    
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+  }
+      res.render("removensxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Xóa thành công"});
+    });
+}
+
