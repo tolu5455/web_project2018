@@ -1,7 +1,6 @@
 var Laptop = require("../models/ComputerModel");
 var Nhasanxuat = require("../models/NhaSanXuatModel");
 var async = require('async');
-var page = 1, start = 0;
 
 exports.index = function(req, res) {
 
@@ -27,6 +26,8 @@ exports.index = function(req, res) {
 };
 
 exports.laptop_list = function(req, res) {
+  var page = req.params.page || 1;
+  var perPage = 12;
     async.parallel({
       nhasanxuat: function(callback){
         Nhasanxuat.find()
@@ -34,9 +35,15 @@ exports.laptop_list = function(req, res) {
       },
       laptops: function(callback){
         Laptop.find({}, "ten hinh giaban")
+        .limit(perPage)
+        .skip((perPage*page)-perPage)
         .populate("nhasanxuat")
         .exec(callback); 
       },
+      lapCount: function(callback){
+        Laptop.count({})
+        .exec(callback);
+      }
     }, function(err, results){
       if(err){ return next(err); }
       if (results.nhasanxuat==null) {
@@ -44,7 +51,8 @@ exports.laptop_list = function(req, res) {
         err.status = 404;
         return next(err);
     }
-        res.render("list", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, active2: 'active'});
+        res.render("list", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, active2: 'active',
+                              pages: Math.ceil(results.lapCount/perPage), current: page});
       });
 };
 
@@ -78,7 +86,8 @@ exports.laptop_detail = function(req, res) {
 };
 
 exports.laptop_brand = function(req, res) {
-
+  var page = req.params.page || 1;
+  var perPage = 12;
   async.parallel({
     laptops: function(callback){
       Laptop.find({}, "ten hinh giaban")
@@ -96,9 +105,15 @@ exports.laptop_brand = function(req, res) {
 
     lap_brand: function(callback) {
       Laptop.find({ 'nhasanxuat': req.params.id })
-      .exec(callback);
+        .limit(perPage)
+        .skip((perPage*page)-perPage)
+        .populate("nhasanxuat")
+        .exec(callback); 
     },
-
+    lapCount: function(callback){
+      Laptop.count({'nhasanxuat': req.params.id})
+      .exec(callback);
+    }
 }, function(err, results) {
     if (err) { return next(err); }
     if (results.nhasanxuat==null) {
@@ -107,7 +122,8 @@ exports.laptop_brand = function(req, res) {
         return next(err);
     }
     
-    res.render('listbrand', { laptop_list1: results.lap_brand, laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuats });
+    res.render('listbrand', { laptop_list1: results.lap_brand, laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuats,
+                            pages: Math.ceil(results.lapCount/perPage), current: page});
 });
 };
 
@@ -264,7 +280,7 @@ exports.laptop_update = function(req,res){
 
 //_maso = lap;
   //console.log(lap);
-  async.parallel({
+  async.series({
     laptopupdate: function(callback){
       Laptop.findOne({'ten' : _ten}, function(err, laptop){
         if(err) return next(err);
@@ -301,14 +317,14 @@ exports.laptop_update = function(req,res){
     });
 }
 
-exports.laptop_update2 = function(req,res){
+exports.nxs_update = function(req,res){
   var _ten = req.query.ten;
   var _ten1 = req.query.ten1;
   var _ttbh = req.query.ttbh;
 
 //_maso = lap;
   //console.log(lap);
-  async.parallel({
+  async.series({
     nsxupdate: function(callback){
       Nhasanxuat.findOne({'ten' : _ten}, function(err, nsx){
         if(err) return next(err);
@@ -339,3 +355,5 @@ exports.laptop_update2 = function(req,res){
       res.render("updatensxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Cập nhật thành công"});
     });
 }
+
+

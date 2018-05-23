@@ -1,69 +1,58 @@
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Sản phẩm</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            {{#each laptop_list1}}
-            <div class="col-md-3 col-sm-6">
-                <div class="single-shop-product">
-                    <div class="product-upper">
-                        <img src="{{this.hinh}}" alt="">
-                    </div>
-                    <h2>
-                        <a href="{{this.url}}">{{this.ten}}</a>
-                    </h2>
-                    <div class="product-carousel-price">
-                        <ins>{{this.giaban}} đồng</ins>
-                    </div>
-
-                    <div class="product-option-shop">
-                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+<body onload="loadPagi()">
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Sản phẩm</h2>
                     </div>
                 </div>
             </div>
-
-            {{/each}}
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="product-pagination text-center">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+
+
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                {{#each laptop_list1}}
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="{{this.hinh}}" alt="">
+                        </div>
+                        <h2>
+                            <a href="{{this.url}}">{{this.ten}}</a>
+                        </h2>
+                        <div class="product-carousel-price">
+                            <ins>{{this.giaban}} đồng</ins>
+                        </div>
+
+                        <div class="product-option-shop">
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+
+                {{/each}}
+            </div>
+        </div>
+        <div class="row">
+            <div id="pagination">
+
             </div>
         </div>
     </div>
-
+    <span id="pageCount" style="display:none">{{pages}}</span>
+    <span id="pageCurrent" style="display:none">{{current}}</span>
+    <span id="idnsx" style="display:none">{{laptop_list1.0.nhasanxuat.id}}</span>
+    <script src="/javascripts/pagination2.js"></script>
+    <script>
+        function loadPagi(){
+            var chuoihtml = loadPagiHTML();
+            pagination.innerHTML = chuoihtml
+        }
+    </script>
+    
+</body>
