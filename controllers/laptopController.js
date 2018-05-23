@@ -390,44 +390,72 @@ exports.laptop_update2 = function(req,res){
 }
 
 
-exports.laptop_remove =async (req, res) => {
+exports.laptop_remove = function(req,res){
+
   var _ten = req.query.ten;
-  let laptopfind;
-  try {
-      laptopfind = await Laptop.findOne({'ten' : _ten});
+
+  async.series({
+    laptopupdate: function(callback){
+      Laptop.findOne({'ten' : _ten}, function(err, laptop){
+        if(err) return next(err);
+        Laptop.findOneAndRemove({'ten' : _ten},function(err, laptop){
+        if(err) return next(err);
+        })
+      }).exec(callback);  
+    },
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback);
+    },
+    
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
   }
-  catch (err) {
-      console.log(err)
-     res.render("removelaptopform", {  thongbao: "Không tìm thấy laptop"});
-      return;
-  }
-  laptopfind.remove();
-  res.render("removelaptopform", {  thongbao: "Xóa thành công"});
+      res.render("removelaptopform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Xóa thành công"});
+    });
+
 }
 
-exports.laptop_remove2 =async (req, res) => {
+exports.laptop_remove2 = function(req,res){
   var _ten = req.query.ten;
-  let nsxfind;
-  var _ten2="";
-  try {
-      nsxfind = await Nhasanxuat.findOne({'ten' : _ten});
+
+  async.series({
+    nsxupdate: function(callback){
+      Nhasanxuat.findOne({'ten' : _ten}, function(err, nsx){
+        if(err) return next(err);
+        Laptop.find({'nhasanxuat': nsx.id}).remove().exec();
+        
+        Nhasanxuat.findOneAndRemove({'ten' : _ten},function(err, nsxresult){
+        if(err) return next(err);
+        })
+      }).exec(callback);  
+    },
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback);
+    },
+    
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
   }
-  catch (err) {
-      console.log(err)
-      res.status(500).json({ msg: err })
-      return;
-  }  
-  
-  try {
-      await Laptop.remove({'nhasanxuat': nsxfind.id});
-}
-catch (err) {
-   console.log(err)
-  res.render("removensxform", {  thongbao: "Không tìm thấy nhà sản xuất"});
-    return;
-}
-
-nsxfind.remove();
-
-res.render("removensxform", {  thongbao: "Xóa thành công"});
+      res.render("removensxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Xóa thành công"});
+    });
 }
