@@ -32,11 +32,9 @@ router.get('/removensxform',laptop_controller.nsx_remove_form);
 
 
 router.get('/update', laptop_controller.laptop_update);
-router.get('/update2', laptop_controller.laptop_update2);
 router.get('/remove', laptop_controller.laptop_remove);
 router.get('/remove2', laptop_controller.laptop_remove2);
 
 
-=======
 router.get('/update2', laptop_controller.nxs_update);
 module.exports = router;

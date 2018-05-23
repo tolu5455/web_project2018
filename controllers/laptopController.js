@@ -476,5 +476,3 @@ exports.laptop_remove2 = function(req,res){
       res.render("removensxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Xóa thành công"});
     });
 }
-=======
-
