@@ -18,7 +18,7 @@ var Computer = require("./models/ComputerModel");
 var Nhasanxuat = require("./models/NhaSanXuatModel");
 
 var mongoose = require("mongoose");
-var mongoDB = "mongodb://tolu5455:intheend54@ds119490.mlab.com:19490/my_computer";
+var mongoDB = "mongodb://tolu5455:intheend54@ds121730.mlab.com:21730/computer";
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
@@ -34,7 +34,7 @@ function nhasanxuatCreate(ten, hinh, trungtambaohanh, cb) {
   nhasanxuatdetail = { ten: ten, hinh: hinh, trungtambaohanh: trungtambaohanh };
 
   var nhasanxuat = new Nhasanxuat(nhasanxuatdetail);
-
+  
   nhasanxuat.save(function(err) {
     if (err) {
       cb(err, null);
@@ -112,7 +112,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
           "Dell101",
-          "Laptop Dell Inspiron 3567",
+          "Laptop Dell Inspiron 3567FDDW",
           "/images/Laptop_1.jpg",
           "14.890.000",
           "12.656.000",
@@ -126,7 +126,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell102",
-            "Laptop Dell Vostro 3568",
+            "Laptop Dell Vostro 3568DS132FDDS",
             "/images/Laptop_2.jpg",
             "15.490.000",
             "13.170.000",
@@ -140,7 +140,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell103",
-            "Laptop Dell Inspiron 5468",
+            "Laptop Dell Inspiron 5468VCTRH4",
             "/images/Laptop_3.jpg",
             "15.990.000",
             "13.590.000",
@@ -155,7 +155,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell104",
-            "Laptop Dell Inspiron 5567",
+            "Laptop Dell Inspiron 556GFGF12A7",
             "/images/Laptop_4.jpg",
             "16.790.000",
             "14.270.000",
@@ -169,7 +169,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell105",
-            "Laptop Dell Inspiron 5570",
+            "Laptop Dell Inspiron 557SDSA780",
             "/images/Laptop_5.jpg",
             "17.990.000",
             "15.300.000",
@@ -183,7 +183,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell106",
-            "Laptop Dell Vostro 5568",
+            "Laptop Dell Vostro 556DSAD128",
             "/images/Laptop_6.jpg",
             "17.990.000",
             "15.300.000",
@@ -197,7 +197,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell107",
-            "Laptop Dell Vostro 3568",
+            "Laptop Dell Vostro 35DSADA23168",
             "/images/Laptop_7.jpg",
             "18.490.000",
             "15.700.000",
@@ -211,7 +211,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell108",
-            "Laptop Dell Inspiron 5379",
+            "Laptop Dell Inspiron 5379 DASD487H",
             "/images/Laptop_8.jpg",
             "24.490.000",
             "20.815.000",
@@ -225,7 +225,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell109",
-            "Laptop Dell Inspiron 7577A",
+            "Laptop Dell Inspiron 7577ABVYT78",
             "/images/Laptop_9.jpg",
             "29.990.000",
             "25.500.000",
@@ -239,7 +239,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Dell110",
-            "Laptop Dell Inspiron 7373",
+            "Laptop Dell Inspiron 7373FSD12UTWE",
             "/images/Laptop_10.jpg",
             "29.990.000",
             "25.500.000",
@@ -253,7 +253,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP201",
-            "Laptop HP Pavilion 14 bf019TU",
+            "Laptop HP Pavilion 14 bf019TUJFGFD",
             "/images/Laptop_11.jpg",
             "12.990.000",
             "11.050.000",
@@ -267,7 +267,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP202",
-            "Laptop HP Pavilion 14 bf034TU",
+            "Laptop HP Pavilion 14 bf034TUSHDSSDQ",
             "/images/Laptop_12.jpg",
             "12.990.000",
             "11.050.000",
@@ -281,7 +281,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP203",
-            "Laptop HP Pavilion x360 ba063TU",
+            "Laptop HP Pavilion x360 ba063TU2425",
             "/images/Laptop_13.jpg",
             "13.490.000",
             "11.500.000",
@@ -295,7 +295,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP204",
-            "Laptop HP Pavilion X360 ad026TU",
+            "Laptop HP Pavilion X360 ad026788TU",
             "/images/Laptop_14.jpg",
             "13.490.000",
             "11.500.000",
@@ -309,7 +309,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP205",
-            "Laptop HP 15 bs161TUGK adxFdU",
+            "Laptop HP 15 bs161TUGK adxF21213dU",
             "/images/Laptop_15.jpg",
             "13.990.000",
             "11.900.000",
@@ -323,7 +323,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP206",
-            "Laptop HP 15 bs768TX",
+            "Laptop HP 15 bs76887GRTNTX",
             "/images/Laptop_16.jpg",
             "17.890.000",
             "15.200.000",
@@ -337,7 +337,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP207",
-            "Laptop HP Envy 13 ad158TU",
+            "Laptop HP Envy 13 ad158TU-HJ45675IO",
             "/images/Laptop_17.jpg",
             "19.990.000",
             "16.990.000",
@@ -351,7 +351,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP208",
-            "Laptop HP Envy 13 ad160TU",
+            "Laptop HP Envy 13 ad160TUTTH-3WGFD",
             "/images/Laptop_18.jpg",
             "26.490.000",
             "22.500.000",
@@ -365,7 +365,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP209",
-            "Laptop HP EliteBook X360 1030 G2",
+            "Laptop HP EliteBook X360 15457S030 G2",
             "/images/Laptop_19.jpg",
             "36.490.000",
             "31.000.000",
@@ -379,7 +379,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "HP210",
-            "Laptop HP EliteBook X360 1030 G2",
+            "Laptop HP EliteBook X360 10SDVFGD30 G2",
             "/images/Laptop_20.jpg",
             "43.490.000",
             "36.700.000",
@@ -393,7 +393,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo301",
-            "Laptop Lenovo Ideapad 320 14ISK",
+            "Laptop Lenovo Ideapad 320 14IGDFGDFGDSK",
             "/images/Laptop_21.jpg",
             "8.990.000",
             "7.650.000",
@@ -407,7 +407,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo302",
-            "Laptop Lenovo Ideapad 320 14ISK",
+            "Laptop Lenovo Ideapad 320 14EWTRWEISK",
             "/images/Laptop_22.jpg",
             "9.690.000",
             "8.250.000",
@@ -421,7 +421,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo303",
-            "Laptop Lenovo IdeaPad 320 15IKBN",
+            "Laptop Lenovo IdeaPad 320 15IRWERWKBN",
             "/images/Laptop_23.jpg",
             "10.490.000",
             "8.920.000",
@@ -435,7 +435,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo304",
-            "Laptop Lenovo Yoga 520 14IKB",
+            "Laptop Lenovo Yoga 520 14REWGIKB",
             "/images/Laptop_24.jpg",
             "11.990.000",
             "10.200.000",
@@ -449,7 +449,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo305",
-            "Laptop Lenovo IdeaPad 320S 14IKBR",
+            "Laptop Lenovo IdeaPad 320S 14GDFIKBR",
             "/images/Laptop_25.jpg",
             "12.490.000",
             "10.600.000",
@@ -463,7 +463,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo306",
-            "Laptop Lenovo IdeaPad 320 15IKB",
+            "Laptop Lenovo IdeaPad 320 15GDFGIKB",
             "/images/Laptop_26.jpg",
             "14.990.000",
             "12.750.000",
@@ -477,7 +477,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo307",
-            "Laptop Lenovo Yoga 520 14IKBR",
+            "Laptop Lenovo Yoga 520 14IKGDFGDFBR",
             "/images/Laptop_27.jpg",
             "15.490.000",
             "13.150.000",
@@ -505,7 +505,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo309",
-            "Laptop Lenovo IdeaPad 720S 13IKB",
+            "Laptop Lenovo IdeaPad 720S 13FIKB",
             "/images/Laptop_29.jpg",
             "22.990.000",
             "19.550.000",
@@ -519,7 +519,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Lenovo310",
-            "Laptop Lenovo IdeaPad 720S 13IKB",
+            "Laptop Lenovo IdeaPad 720S 13FDSIKB",
             "/images/Laptop_30.jpg",
             "24.990.000",
             "21.250.000",
@@ -533,7 +533,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus401",
-            "Laptop Asus A540UP",
+            "Laptop Asus A540UFDSFSDP",
             "/images/Laptop_31.jpg",
             "13.490.000",
             "11.500.000",
@@ -547,7 +547,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus402",
-            "Laptop Asus X542UQ",
+            "Laptop Asus X542VXCVUQ",
             "/images/Laptop_32.jpg",
             "13.990.000",
             "11.800.000",
@@ -561,7 +561,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus403",
-            "Laptop Asus TP410UA",
+            "Laptop Asus TP41BVEW50UA",
             "/images/Laptop_33.jpg",
             "13.990.000",
             "11.800.000",
@@ -575,7 +575,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus404",
-            "Laptop Asus X510UA",
+            "Laptop Asus X515436GD0UA",
             "/images/Laptop_34.jpg",
             "14.190.000",
             "12.050.000",
@@ -589,7 +589,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus405",
-            "Laptop Asus X510UQ",
+            "Laptop Asus X51TGFD530UQ",
             "/images/Laptop_35.jpg",
             "15.190.000",
             "12.900.000",
@@ -603,7 +603,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus406",  
-            "Laptop Asus S510UA",
+            "Laptop Asus S51435GFDG0UA",
             "/images/Laptop_36.jpg",
             "16.290.000",
             "13.850.000",
@@ -617,7 +617,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus407",
-            "Laptop Asus S510UQ",
+            "Laptop Asus S5DFGEFDE43510UQ",
             "/images/Laptop_37.jpg",
             "17.290.000",
             "14.700.000",
@@ -631,7 +631,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus408",
-            "Laptop Asus X510UQ",
+            "Laptop Asus X510T3453GE55UQ",
             "/images/Laptop_38.jpg",
             "17.990.000",
             "15.300.000",
@@ -645,7 +645,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus409",
-            "Laptop Asus UX430UA",
+            "Laptop Asus UX4305454GDFCA",
             "/images/Laptop_39.jpg",
             "21.990.000",
             "18.700.000",
@@ -659,7 +659,7 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus410",
-            "Laptop Asus FX503VD",
+            "Laptop Asus FX503032S1VWS8VD",
             "/images/Laptop_40.jpg",
             "24.490.000",
             "20.800.000",
