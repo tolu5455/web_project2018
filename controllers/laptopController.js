@@ -476,3 +476,68 @@ exports.laptop_remove2 = function(req,res){
       res.render("removensxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Xóa thành công"});
     });
 }
+
+
+exports.laptop_themlaptop = function(req,res){
+  async.parallel({
+    
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback); 
+    },
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+  }
+      res.render("themlaptopform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat});
+    });
+}
+
+exports.laptop_add = function(req,res){
+
+  var _nsx = req.query.nsx;
+  var _maso = req.query.maso;
+  var _ten = req.query.ten;
+  var _giaban = req.query.giaban;
+  var _gianhap = req.query.gianhap;
+  var _ram = req.query.ram;
+  var _cpu = req.query.cpu;
+  var _manhinh = req.query.manhinh;
+  var _imagepath = "/images/DellAdd1.png";
+ 
+  async.parallel({
+    laptopadd: function(callback){
+      Nhasanxuat.findOne({'ten' : _nsx}, function(err, laptop){
+        if(err) return next(err); 
+        var newlaptop=new Laptop({ maso:_maso, ten:_ten,giaban:_giaban, gianhap: _gianhap, ram: _ram, cpu : _cpu, manhinh : _manhinh,hinh: _imagepath ,nhasanxuat: Nhasanxuat.id})
+        Laptop.create(newlaptop);
+      }).exec(callback);  
+    },  
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback);
+    },
+    
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+  }
+      res.render("themlaptopform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Thêm thành công"});
+    });
+}
