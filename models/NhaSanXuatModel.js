@@ -15,7 +15,7 @@ var nhasanxuatSchema = new Schema({
 });
 
 nhasanxuatSchema.virtual('url').get(function(){
-  return '/catalog/nhasanxuat/' + this._id;
+  return '/catalog/nhasanxuat/' + this._id + '/1';
 })
 
 module.exports = mongoose.model("Nhasanxuat", nhasanxuatSchema);
