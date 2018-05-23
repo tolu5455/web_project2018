@@ -8,9 +8,9 @@ router.get('/', laptop_controller.index);
 
 router.get('/laptop/:id', laptop_controller.laptop_detail);
 
-router.get('/laptops', laptop_controller.laptop_list);
+router.get('/laptops/:page', laptop_controller.laptop_list);
 
-router.get('/nhasanxuat/:id', laptop_controller.laptop_brand);
+router.get('/nhasanxuat/:id/:page', laptop_controller.laptop_brand);
 
 router.get('/search', laptop_controller.laptop_search);
 
@@ -26,5 +26,5 @@ router.get('/updatensxform', laptop_controller.nsx_update_form);
 
 router.get('/update', laptop_controller.laptop_update);
 
-router.get('/update2', laptop_controller.laptop_update2);
+router.get('/update2', laptop_controller.nxs_update);
 module.exports = router;
