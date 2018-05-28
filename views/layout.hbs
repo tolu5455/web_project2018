@@ -37,10 +37,24 @@
         <div class="text-right">
           <div class="user-menu">
             <ul>
-              <li>
-                <a href="/catalog/admin">
-                  <i class="fa fa-user"></i> Đăng nhập</a>
+              <li style="display: {{display1}}">
+                <a href="/auth/login">
+                  <i class="fa fa-key"></i>Đăng nhập</a>
               </li>
+              <li style="display: {{display2}}">
+                <a href="/auth/register">
+                  <i class="fa fa-edit"></i>Đăng ký</a>
+              </li>
+              <li style="display: {{display3}}">
+                <a href="/catalog/admin/admin">
+                  <i class="fa fa-user"></i>{{username}}</a>
+              </li>
+
+              <li style="display: {{display4}}">
+                <a href="/auth/logout">
+                  <i class="fa fa-power-off"></i>Đăng xuất</a>
+              </li>
+
             </ul>
           </div>
         </div>
@@ -74,24 +88,25 @@
               <a href="/catalog/laptops/1">Sản phẩm</a>
             </li>
             <li>
-              <div class="dropdown">
+              <div class="dropdown" style="display:{{dpbrand}}">
                 <span class="dropbtn">Hãng laptop</span>
                 <div class="dropdown-content">
-                  <a href="{{nhasanxuat_list.0.url}}">{{nhasanxuat_list.0.ten}}</a>
-                  <a href="{{nhasanxuat_list.1.url}}">{{nhasanxuat_list.1.ten}}</a>
-                  <a href="{{nhasanxuat_list.2.url}}">{{nhasanxuat_list.2.ten}}</a>
-                  <a href="{{nhasanxuat_list.3.url}}">{{nhasanxuat_list.3.ten}}</a>
-                  <a href="{{nhasanxuat_list.4.url}}">{{nhasanxuat_list.4.ten}}</a>
+                  {{#each nhasanxuat_list}}
+                  <a href="{{this.url}}">{{this.ten}}</a>
+                  {{/each}}
+
                 </div>
               </div>
             </li>
           </ul>
-          <form id="searchthis" action="/catalog/search" style="display:inline;" method="get" autocomplete="off">
-            <div class="autocomplete">
-              <input id="namanyay-search-box" name="ten" size="40" type="text" placeholder="Tên sản phẩm..." />
-              <input id="namanyay-search-btn" value="Tìm kiếm" type="submit" />
-            </div>
-          </form>
+          <div style="display:{{dpsearch}}">
+            <form id="searchthis" action="/catalog/search" style="display:inline;" method="get" autocomplete="off">
+              <div class="autocomplete">
+                <input id="namanyay-search-box" name="ten" size="40" type="text" placeholder="Tên sản phẩm..." />
+                <input id="namanyay-search-btn" value="Tìm kiếm" type="submit" />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -144,21 +159,11 @@
           <div class="footer-menu">
             <h2 class="footer-wid-title">Các hãng Laptop</h2>
             <ul>
+              {{#each nhasanxuat_list}}
               <li>
-                <a href="{{nhasanxuat_list.0.url}}">{{nhasanxuat_list.0.ten}}</a>
+                <a href="{{this.url}}">{{this.ten}}</a>
               </li>
-              <li>
-                <a href="{{nhasanxuat_list.1.url}}">{{nhasanxuat_list.1.ten}}</a>
-              </li>
-              <li>
-                <a href="{{nhasanxuat_list.2.url}}">{{nhasanxuat_list.2.ten}}</a>
-              </li>
-              <li>
-                <a href="{{nhasanxuat_list.3.url}}">{{nhasanxuat_list.3.ten}}</a>
-              </li>
-              <li>
-                <a href="{{nhasanxuat_list.4.url}}">{{nhasanxuat_list.4.ten}}</a>
-              </li>
+              {{/each}}
             </ul>
           </div>
         </div>
@@ -228,7 +233,7 @@
   <script type="text/javascript" src="/javascripts/index.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <script src="/javascripts/search.js"></script>
+  <script src="/javascripts/search.js"></script>
 </body>
 
 

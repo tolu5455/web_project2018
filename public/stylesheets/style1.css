@@ -711,7 +711,7 @@ input[type="submit"], button[type=submit] {
     padding: 11px 20px;
     text-transform: uppercase;
 }
-input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
+input[type="submit"]:hover, button[type=submit]:hover {background-color: #222; color: white}
 .single-sidebar input[type="text"] {
     margin-bottom: 10px;
     width: 100%;

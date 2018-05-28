@@ -1,4 +1,3 @@
-
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -16,7 +15,24 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
+            <div class="col-md-3">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Sản phẩm mới nhất</h2>
+                    {{#each moinhat}}
+                    <div class="thubmnail-recent">
+                        <img src="{{this.hinh}}" class="recent-thumb" alt="">
+                        <h2>
+                            <a href="{{this.url}}">{{this.ten}}</a>
+                        </h2>
+                        <div class="product-sidebar-price">
+                            <ins>{{this.giaban}} đồng</ins>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
 
+
+            </div>
             <div class="col-md-8">
                 <div class="product-content-right">
                     <div class="product-breadcroumb">
@@ -93,9 +109,30 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="related-products-wrapper">
+                    <h2 class="related-products-title">Sản phẩm liên quan</h2>
+                    <div class="related-products-carousel">
+                        {{#each lienquan}}
+                        <div class="single-product">
+                            <div class="product-f-image">
+                                <img src="{{this.hinh}}" alt="">
+                                <div class="product-hover">                               
+                                    <a href="{{this.url}}" class="view-details-link">
+                                        <i class="fa fa-link"></i> Xem chi tiết</a>
+                                </div>
+                            </div>
 
+                            <h2>
+                                <a href="{{this.url}}">{{this.ten}}</a>
+                            </h2>
 
-
+                            <div class="product-carousel-price">
+                                <ins>{{this.giaban}} đồng</ins>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
                 </div>
             </div>
         </div>
