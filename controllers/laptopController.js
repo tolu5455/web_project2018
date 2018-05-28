@@ -541,3 +541,60 @@ exports.laptop_add = function(req,res){
       res.render("themlaptopform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Thêm thành công"});
     });
 }
+
+
+exports.nsx_themnsx = function(req,res){
+  async.parallel({
+    
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find()
+      .populate("nhasanxuat")
+      .exec(callback); 
+    },
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+  }
+      res.render("themnsxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat});
+    });
+}
+
+exports.nsx_add = function(req,res){
+
+  var _nsx = req.query.nsx;
+  var _ttbh = req.query.ttbh;
+  var _imagepath = "/images/Huawei.jpg";
+ 
+  async.parallel({
+    nsxadd: function(callback){
+      var newnsx=new Nhasanxuat({ten: _nsx,trungtambaohanh:_ttbh,hinh:_imagepath})
+        Nhasanxuat.create(newnsx);
+        callback();
+    },  
+    nhasanxuat: function(callback){
+      Nhasanxuat.find()
+      .exec(callback) ;
+    },
+    laptops: function(callback){
+      Laptop.find() 
+      .populate("nhasanxuat")
+      .exec(callback);
+    },
+    
+  }, function(err, results){
+    if(err){ return next(err); }
+    if (results.nhasanxuat==null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+  }
+      res.render("themnsxform", { laptop_list: results.laptops, nhasanxuat_list: results.nhasanxuat, thongbao: "Thêm thành công"});
+    });
+}

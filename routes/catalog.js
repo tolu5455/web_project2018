@@ -28,9 +28,10 @@ router.get('/updatensxform', laptop_controller.nsx_update_form);
 router.get('/removelaptopform',laptop_controller.laptop_remove_form);
 router.get('/removensxform',laptop_controller.nsx_remove_form);
 router.get('/themlaptopform',laptop_controller.laptop_themlaptop);
+router.get('/themnsxform',laptop_controller.nsx_themnsx);
 
 router.get('/add',laptop_controller.laptop_add);
-
+router.get('/addnsx',laptop_controller.nsx_add);
 
 
 router.get('/update', laptop_controller.laptop_update);
