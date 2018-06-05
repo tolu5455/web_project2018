@@ -1,0 +1,165 @@
+ {{!--
+<div class="site-branding-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="shopping-item">
+                    <a href="/catalog/cart">Cart -
+                        <span class="cart-amunt">$800</span>
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="product-count">5</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+<!-- End site branding area -->
+
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Giỏ hàng</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page title area -->
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Sản phẩm mới nhất</h2>
+                    {{#each moinhat}}
+                    <div class="thubmnail-recent">
+                        <img src="{{this.hinh}}" class="recent-thumb" alt="">
+                        <h2>
+                            <a href="{{this.url}}">{{this.ten}}</a>
+                        </h2>
+                        <div class="product-sidebar-price">
+                            <ins>{{this.giaban}} đồng</ins>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="product-content-right">
+                    <div class="woocommerce">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Tên</th>
+                                    <th class="text-center">Hình</th>
+                                    <th class="text-center">Giá bán</th>
+                                    <th class="text-center">Nhà sản xuất</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-center"></th>
+                                </tr>
+                            </thead>
+                            {{#each carttable}}
+                            <tbody>
+                                <tr id="myTableRow">
+                                    <td>{{this.ten}}</td>
+                                    <td>
+                                        <img src="{{this.hinh}}" style="width: 100px;">
+                                    </td>
+                                    <td>{{this.giaban}} đồng</td>
+                                    <td>{{this.nhasanxuat.ten}}</td>
+                                    <td>
+                                        <div class="quantity">
+                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="soluong" min="1" step="1">
+                                        </div>
+                                    </td>
+                                    <td class='product-remove'>       
+                                        <form method="POST" action="/catalog/xoacart">                           
+                                         <input style="display:none" type="text" name="ten" value="{{this.ten}}"> 
+                                         <button type="submit" >x</button> 
+                                         </form>  
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {{/each}}
+                        </table>
+
+
+                        <div class="cart-collaterals">
+
+
+                            <div class="cross-sells">
+                                <h2>Sản phẩm bán chạy</h2>
+                                <ul class="products">
+                                    <li class="product">
+                                        <a href="{{moinhat.0.url}}" target="_blank">
+                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="{{moinhat.0.hinh}}">
+                                            <h3>{{moinhat.0.ten}}</h3>
+                                            <span class="price">
+                                                <span class="amount">{{moinhat.0.gia}}</span>
+                                            </span>
+                                        </a>
+
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" target="_blank" href="{{moinhat.0.url}}">Xem chi tiết</a>
+                                    </li>
+
+                                    <li class="product">
+                                        <a href="{{moinhat.3.url}}" target="_blank">
+                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="{{moinhat.3.hinh}}">
+                                            <h3>{{moinhat.3.ten}}</h3>
+                                            <span class="price">
+                                                <span class="amount">{{moinhat.3.gia}}</span>
+                                            </span>
+                                        </a>
+
+                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" target="_blank" href="{{moinhat.3.url}}">Xem chi tiết</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                            <div class="cart_totals ">
+                                <h2>Cart Totals</h2>
+
+                                <table cellspacing="0">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>Cart Subtotal</th>
+                                            <td>
+                                                <span class="amount">£15.00</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="shipping">
+                                            <th>Shipping and Handling</th>
+                                            <td>Free Shipping</td>
+                                        </tr>
+
+                                        <tr class="order-total">
+                                            <th>Order Total</th>
+                                            <td>
+                                                <strong>
+                                                    <span class="amount">£15.00</span>
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <form method="post" action="#" class="shipping_calculator" style="margin-top: 100px">
+
+                                <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Thanh toán</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

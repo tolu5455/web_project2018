@@ -45,6 +45,7 @@
                 <a href="/auth/register">
                   <i class="fa fa-edit"></i>Đăng ký</a>
               </li>
+              <li><a href="/catalog/cart"><i class="fa fa-money"></i> My Cart</a></li>
               <li style="display: {{display3}}">
                 <a href="/catalog/admin/admin">
                   <i class="fa fa-user"></i>{{username}}</a>
@@ -86,7 +87,7 @@
             </li>
             <li class="{{active2}}">
               <a href="/catalog/laptops/1">Sản phẩm</a>
-            </li>
+            </li>            
             <li>
               <div class="dropdown" style="display:{{dpbrand}}">
                 <span class="dropbtn">Hãng laptop</span>
@@ -94,9 +95,11 @@
                   {{#each nhasanxuat_list}}
                   <a href="{{this.url}}">{{this.ten}}</a>
                   {{/each}}
-
                 </div>
               </div>
+            </li>
+            <li class="{{active3}}">
+              <a href="/catalog/cart">Giỏ hàng</a>
             </li>
           </ul>
           <div style="display:{{dpsearch}}">

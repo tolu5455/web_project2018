@@ -1,0 +1,23 @@
+<h4>
+    <a href="/catalog/admin/admin">Trang chủ Admin</a>
+</h4>
+<h2>DANH SÁCH TÀI KHOẢN</h2>
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th class="text-center">Tên đăng nhập</th>
+            <th class="text-center">Tên người dùng</th>
+            
+        </tr>
+    </thead>
+    {{#each taikhoan_list}}
+    <tbody>
+        <tr>
+            <td>{{this.username}}</td>
+            <td>{{this.name}}</td>
+        </tr>
+    </tbody>
+    {{/each}}
+</table>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>

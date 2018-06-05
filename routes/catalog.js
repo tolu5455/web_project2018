@@ -39,5 +39,10 @@ router.post('/remove', laptop_controller.laptop_remove);
 router.post('/remove2', laptop_controller.laptop_remove2);
 router.post('/update2', laptop_controller.nxs_update);
 
+router.get('/danhsachtk_admin', laptop_controller.list_taikhoan)
+
+router.get('/cart', laptop_controller.cart);
+router.post('/doCart', laptop_controller.doCart);
+router.post('/xoacart', laptop_controller.xoacart);
 
 module.exports = router;

@@ -3,6 +3,7 @@ var Nhasanxuat = require("../models/NhaSanXuatModel");
 var async = require('async');
 var passport = require("passport");
 var User = require("../models/user");
+var cart = [];
 
 var dp1 = ""
 var dp2 = ""
@@ -10,7 +11,6 @@ var dp3 = "none"
 var dp4 = "none"
 var username = ""
 var related_nsx = "";
-
 exports.index = function (req, res) {
   if (req.isAuthenticated()) {
     dp1 = "none"
@@ -1197,3 +1197,221 @@ exports.nsx_add = function (req, res) {
     });
   }
 }
+
+
+exports.list_taikhoan = function(req, res){
+  if (!req.isAuthenticated()) {
+    dp1 = ""
+    dp2 = ""
+    dp3 = "none"
+    dp4 = "none"
+    res.redirect("/auth/login")
+  } else {
+    dp1 = "none"
+    dp2 = "none"
+    dp3 = ""
+    dp4 = ""
+    async.parallel({
+      nhasanxuat: function (callback) {
+        Nhasanxuat.find()
+          .exec(callback);
+      },
+      laptops: function (callback) {
+        Laptop.find()
+          .populate("nhasanxuat")
+          .exec(callback);
+      },
+      users: function (callback) {
+        User.find()
+          .exec(callback);
+      },
+    }, function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      if (results.nhasanxuat == null) {
+        var err = new Error('Nha san xuat not found');
+        err.status = 404;
+        return next(err);
+      }
+      res.render("list_tk_admin", {
+        laptop_list: results.laptops,
+        nhasanxuat_list: results.nhasanxuat,
+        taikhoan_list: results.users,
+        username: username,
+        display1: dp1,
+        display2: dp2,
+        display3: dp3,
+        display4: dp4
+      });
+    });
+  } 
+}
+
+// cart
+
+exports.cart = function (req, res) {
+  var moinhat = [];
+  if (req.isAuthenticated()) {
+    dp1 = "none"
+    dp2 = "none"
+    dp3 = ""
+    dp4 = ""
+  } else {
+    dp1 = ""
+    dp2 = ""
+    dp3 = "none"
+    dp4 = "none"
+  }
+  async.parallel({
+    nhasanxuat: function (callback) {
+      Nhasanxuat.find()
+        .exec(callback);
+    },
+    laptops: function (callback) {
+      Laptop.find({}, "ten hinh giaban")
+        .populate("nhasanxuat")
+        .exec(callback);
+    },
+  }, function (err, results) {
+    if (err) {
+      return next(err);
+    }
+    if (results.nhasanxuat == null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+    }
+    for (var i = 0; i < 4; i++) {
+      moinhat.push(results.laptops[Math.floor((Math.random() * 49))])
+    }
+    res.render("cart", {
+      laptop_list: results.laptops,
+      nhasanxuat_list: results.nhasanxuat,
+      active3: 'active',
+      moinhat: moinhat,
+      carttable: cart,
+      username: username,
+      display1: dp1,
+      display2: dp2,
+      display3: dp3,
+      display4: dp4
+    });
+  });
+};
+
+exports.xoacart = function (req, res) {
+  var moinhat = [];
+  var ten = req.body.ten
+  if (req.isAuthenticated()) {
+    dp1 = "none"
+    dp2 = "none"
+    dp3 = ""
+    dp4 = ""
+  } else {
+    dp1 = ""
+    dp2 = ""
+    dp3 = "none"
+    dp4 = "none"
+  }
+  async.parallel({
+    nhasanxuat: function (callback) {
+      Nhasanxuat.find()
+        .exec(callback);
+    },
+    laptops: function (callback) {
+      Laptop.find({}, "ten hinh giaban")
+        .populate("nhasanxuat")
+        .exec(callback);
+    },
+  }, function (err, results) {
+    if (err) {
+      return next(err);
+    }
+    if (results.nhasanxuat == null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+    }
+    for (var i = 0; i < 4; i++) {
+      moinhat.push(results.laptops[Math.floor((Math.random() * 49))])
+    }
+    for(var i = 0; i < cart.length; i++){
+      if(ten == cart[i].ten) cart.splice(i,1);
+    }
+
+
+    res.render("cart", {
+      laptop_list: results.laptops,
+      nhasanxuat_list: results.nhasanxuat,
+      active3: 'active',
+      moinhat: moinhat,
+      carttable: cart,
+      username: username,
+      display1: dp1,
+      display2: dp2,
+      display3: dp3,
+      display4: dp4
+    });
+  });
+};
+
+
+exports.doCart = function (req, res) {
+  var moinhat = [];
+  var ten = req.body.ten
+  if (req.isAuthenticated()) {
+    dp1 = "none"
+    dp2 = "none"
+    dp3 = ""
+    dp4 = ""
+  } else {
+    dp1 = ""
+    dp2 = ""
+    dp3 = "none"
+    dp4 = "none"
+  }
+  async.parallel({
+    nhasanxuat: function (callback) {
+      Nhasanxuat.find()
+        .exec(callback);
+    },
+    laptops: function (callback) {
+      Laptop.find({}, "ten hinh giaban")
+        .populate("nhasanxuat")
+        .exec(callback);
+    },
+    laptop_cart: function (callback) {
+      Laptop.findOne({"ten": ten}, "ten hinh giaban")
+        .populate("nhasanxuat")
+        .exec(callback);
+    },
+  }, function (err, results) {
+    if (err) {
+      return next(err);
+    }
+    if (results.nhasanxuat == null) {
+      var err = new Error('Nha san xuat not found');
+      err.status = 404;
+      return next(err);
+    }
+    for (var i = 0; i < 4; i++) {
+      moinhat.push(results.laptops[Math.floor((Math.random() * 49))])
+    }
+    
+    cart.push(results.laptop_cart)
+    res.render("cart", {
+      laptop_list: results.laptops,
+      nhasanxuat_list: results.nhasanxuat,
+      carttable: cart,
+      active3: 'active',
+      moinhat: moinhat,
+      username: username,
+      display1: dp1,
+      display2: dp2,
+      display3: dp3,
+      display4: dp4
+    });
+  });
+};
+
