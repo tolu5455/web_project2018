@@ -10,10 +10,10 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <h2 class="text-center" style="color: #5a88ca;">
-                                        <strong> Đăng nhập </strong>
+                                        <strong>Lấy lại tài khoản </strong>
                                     </h2>
                                     <hr />
-                                    <form action="/auth/login" method="POST">
+                                    <form action="/auth/retrieve" method="POST">
                                     <div class="row">
                                         <span style="margin-left:20px; padding-bottom:30px; color:red">{{thongbao}}</span>
                                     </div>
@@ -34,19 +34,18 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-lock"></span>
+                                                            <span class="glyphicon glyphicon-envelope"></span>
                                                         </div>
-
-                                                        <input type="password" placeholder="Password" name="password" class="form-control" id="pw" pattern=".{6,}" title="Ít nhất 6 ký tự" required>
+                                                        <input type="email" placeholder="Your email" name="email" autofocus class="form-control" id="email" autocomplete="off" pattern=".{5,}"
+                                                            title="Ít nhất 6 ký tự" required>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row text-right" style="color: #5a88ca; margin-right:20px"><a href="/auth/forgot">Quên mật khẩu?</a></div>
                                         <hr />
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <button type="submit" class="btn btn-success btn-block btn-lg"> Đăng nhập </button>
+                                                <button type="submit" class="btn btn-success btn-block btn-lg"> Gửi </button>
                                             </div>
                                         </div>
                                     </form>

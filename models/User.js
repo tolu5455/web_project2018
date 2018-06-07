@@ -6,8 +6,13 @@ var UserSchema = new Schema({
     username: String,
     password: String,
     name: String,
+    email: String,
     role: String
 });
+
+UserSchema.virtual('url').get(function(){
+    return '/catalog/user/' + this._id;
+  })
 
 UserSchema.plugin(passportLocalMongoose);
 

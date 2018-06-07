@@ -10,6 +10,8 @@ router.get('/register', auth.register);
 // route for register action
 router.post('/register', auth.doRegister);
 
+router.get('/verify', auth.verify);
+router.get('/verify2', auth.verify2);
 // route to login page
 router.get('/login', auth.login);
 
@@ -18,5 +20,9 @@ router.post('/login', auth.doLogin);
 
 // route for logout action
 router.get('/logout', auth.logout);
+
+router.get('/forgot', auth.forgot);
+
+router.post('/retrieve', auth.retrieve)
 
 module.exports = router;
