@@ -46,10 +46,10 @@
 <h4 style="margin-left: 100px; margin-top: 40px">
     <a href="/catalog/admin/admin">Trang chủ Admin</a>
 </h4>
-<form class="modal-content" action="/catalog/add" method="POST">
+<form class="modal-content" action="/catalog/thanhtoan" method="POST">
     <div class="container1">
         <div class="row">
-            <h1>Thêm laptop</h1>
+            <h1>Thông tin thanh toán</h1>
             <br>
             <div style="color: rgb(0, 202, 0)">
                 <span>{{thongbao}}</span>
@@ -57,45 +57,43 @@
         </div>
         <hr>
         <label>
-            <b>Nhà sản xuất</b>
+            <b>Tên tài khoản</b>
         </label>
-        <input type="text" placeholder="Nhập nhà sản xuất" name="nsx" required>
+        <input type="text" value="{{username}}" name="tenTK" readonly>
+        <hr>
         <label>
-            <b>Mã số</b>
+            <b>Tên khách hàng</b>
         </label>
-        <input type="text" placeholder="Nhập mã số" name="maso" required>
-
+        <input type="text" placeholder="Tên khách hàng" name="tenKH" required>
+        <hr>
         <label>
-            <b>Tên</b>
+            <b>Số điện thoại của khách hàng</b>
         </label>
-        <input type="text" placeholder="Nhập tên" name="ten" required>
-
+        <input type="tel" placeholder="Số điện thoại" name="sdt" required>
+        <hr>
         <label>
-            <b>Giá bán</b>
+            <b>Địa chỉ giao hàng</b>
         </label>
-        <input type="text" placeholder="Nhập giá bán" name="giaban" required>
-
+        <input type="text" placeholder="Địa chỉ giao hàng" name="diachi" required>
+        <hr>
         <label>
-            <b>Giá nhập</b>
+            <b>Sản phẩm muốn mua</b>
         </label>
-        <input type="text" placeholder="Nhập giá bán" name="gianhap" required>
-
+        <br> {{#each cart}}
+        <input style="display:none" name="tenSP" value="{{this.ten}}">
+        <img width="100px" src="{{this.hinh}}">
+        <p>{{this.ten}}
+            <strong>({{this.giaban}} đồng)</strong>
+        </p>
+        {{/each}}
+        <hr>
         <label>
-            <b>Ram</b>
+            <b>Tổng tiền</b>
         </label>
-        <input type="text" placeholder="Nhập ram" name="ram" required>
-
-        <label>
-            <b>CPU</b>
-        </label>
-        <input type="text" placeholder="Nhập CPU" name="cpu" required>
-
-        <label>
-            <b>Màn hình</b>
-        </label>
-        <input type="text" placeholder="Nhập màn hình" name="manhinh" required>
+        <input type="text" name="tongtien" value="{{tongtien}} đồng" readonly>
+        <hr>
         <div class="text-center">
-            <button type="submit" class="btnupdate">Thêm</button>
+            <button>Đặt mua</button>
         </div>
     </div>
 </form>

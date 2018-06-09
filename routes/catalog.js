@@ -45,4 +45,14 @@ router.get('/cart', laptop_controller.cart);
 router.post('/doCart', laptop_controller.doCart);
 router.post('/xoacart', laptop_controller.xoacart);
 
+router.get('/themtk', laptop_controller.themtkform)
+router.post('/themtk', laptop_controller.themtk)
+
+router.post('/datmua', laptop_controller.datmua);
+
+router.post('/thanhtoan', laptop_controller.thanhtoan);
+
+router.get('/dondathanglist', laptop_controller.dondathanglist);
+
+router.post('/luuSP', laptop_controller.luuSP);
 module.exports = router;

@@ -16,7 +16,7 @@ var dp6 = "none";
 var smtpTransport = nodemailer.createTransport({
   host: "smtp.gmail.com",
   auth: {
-    user: "hoangphuct97@gmail.com",
+    user: "frozenheart5455@gmail.com",
     pass: "intheend54"
   },
   tls: { rejectUnauthorized: false }
@@ -146,15 +146,31 @@ userController.login = function(req, res) {
 };
 
 // Post login
-userController.doLogin = function(req, res) {
-  passport.authenticate("local")(req, res, function(err) {
-    if (err) req.flash("login fail", err);
-    if (req.body.username == "admin") {
-      res.redirect("/catalog/admin/" + req.user.username);
-    } else {
-      res.redirect("/catalog/homepage/" + req.user.username);
+userController.doLogin = function(req, res, next) {
+  passport.authenticate("local", function(err, user, info) {
+    if (err) {
+      return next(err);
     }
-  });
+    if (!user) {
+      return res.render("login", {
+        thongbao: "Sai mật khẩu hoặc không tồn tại tài khoản",
+        display1: dp1,
+        display2: dp2,
+        display3: dp3,
+        display4: dp4,
+        dpbrand: dp5,
+        dpsearch: dp6
+      });
+    }
+    req.login(user, function(err) {
+      if (err) return next(err);
+      if (req.body.username == "admin") {
+            res.redirect("/catalog/admin/" + req.user.username);
+          } else {
+            res.redirect("/catalog/homepage/" + req.user.username);
+          }
+    });
+  })(req, res, next);
 };
 
 // logout
@@ -165,7 +181,7 @@ userController.logout = function(req, res) {
 
 //forgot page
 
-userController.forgot = function(req, res){
+userController.forgot = function(req, res) {
   res.render("forgot", {
     display1: dp1,
     display2: dp2,
@@ -174,17 +190,17 @@ userController.forgot = function(req, res){
     dpbrand: dp5,
     dpsearch: dp6
   });
-}
+};
 
 var rand2, mailOptions2, host2, link2;
 var us2;
 
-userController.retrieve = function(req, res){
-  var us = req.body.username
-  var email = req.body.email
-  User.find({'username': us}, function(err, result){
-    if(err) return next(err)
-    if(result[0].email != email) {
+userController.retrieve = function(req, res) {
+  var us = req.body.username;
+  var email = req.body.email;
+  User.find({ username: us }, function(err, result) {
+    if (err) return next(err);
+    if (result[0].email != email) {
       res.render("forgot", {
         thongbao: "Email không trùng khớp",
         display1: dp1,
@@ -194,8 +210,7 @@ userController.retrieve = function(req, res){
         dpbrand: dp5,
         dpsearch: dp6
       });
-    } else{
-      
+    } else {
       rand2 = Math.floor(Math.random() * 100 + 54);
       host2 = req.get("host");
       link2 = "http://" + host2 + "/auth/verify2?id=" + rand2;
@@ -206,7 +221,6 @@ userController.retrieve = function(req, res){
           "To reset your password, please click on the link to verify your email.<br><a href=" +
           link2 +
           "> Click here to verify</a> <br> After clicking on the link your password will be reset to <strong>ishoplaptop</strong>"
-
       };
       smtpTransport.sendMail(mailOptions2, function(err, response) {
         if (err) return next(err);
@@ -224,16 +238,16 @@ userController.retrieve = function(req, res){
         }
       });
     }
-  })
-}
+  });
+};
 
 userController.verify2 = function(req, res) {
   if (req.protocol + "://" + req.get("host") == "http://" + host2) {
     console.log("Domain is matched. Information is from Authentic email");
     if (req.query.id == rand2) {
-      User.find({'username': us2}, function(err, result){
-        result[0].setPassword("ishoplaptop", function(err){
-          if(err) return next(err)
+      User.find({ username: us2 }, function(err, result) {
+        result[0].setPassword("ishoplaptop", function(err) {
+          if (err) return next(err);
           result[0].save();
           res.render("login", {
             display1: dp1,
@@ -243,9 +257,9 @@ userController.verify2 = function(req, res) {
             dpbrand: dp5,
             dpsearch: dp6,
             thongbao: "Lấy lại mật khẩu thành công"
-          })
-        })
-      })     
+          });
+        });
+      });
     } else {
       console.log("email is not verified");
       res.end("Bad request");
@@ -254,6 +268,5 @@ userController.verify2 = function(req, res) {
     res.end("<h1>Request is from unknown source");
   }
 };
-
 
 module.exports = userController;

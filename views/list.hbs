@@ -29,9 +29,12 @@
                             <ins>{{this.giaban}} đồng</ins>
                         </div>
 
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-                        </div>
+                        <form action="/catalog/doCart" class="cart" method="POST">
+                            <input style="display:none" type="text" value="{{this.ten}}" name="ten">
+                            <input style="display:none" type="text" value="{{this.hinh}}" name="hinh">
+                            <input style="display:none" type="text" value="{{this.giaban}}" name="gia">
+                            <button class="add_to_cart_button" type="submit">Thêm vào giỏ</button>
+                        </form>
                     </div>
                 </div>
 
@@ -48,7 +51,7 @@
     <span id="pageCurrent" style="display:none">{{current}}</span>
     <script src="/javascripts/pagination.js"></script>
     <script>
-        function loadPagi(){
+        function loadPagi() {
             var chuoihtml = loadPagiHTML();
             pagination.innerHTML = chuoihtml
         }

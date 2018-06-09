@@ -1,7 +1,7 @@
 var Laptop = require("../models/ComputerModel");
 var Nhasanxuat = require("../models/NhaSanXuatModel");
 var async = require("async");
-var passport = require("passport");
+var DDH = require("../models/DonDatHang");
 var User = require("../models/user");
 var cart = [];
 
@@ -97,7 +97,11 @@ exports.homepage = function(req, res) {
         return next(err);
       }
       username = results.user.name;
-      userurl = results.user.url;
+      if (username == "Admin") {
+        userurl = "/catalog/admin/admin";
+      } else {
+        userurl = results.user.url;
+      }
 
       res.render("homepage", {
         laptop_list: results.laptops,
@@ -405,8 +409,9 @@ exports.laptop_admin = function(req, res) {
           err.status = 404;
           return next(err);
         }
+        
         username = results.user.name;
-        if (results.user.username == "admin") {
+        if (username == "Admin") {
           userurl = "/catalog/admin/admin";
         } else {
           userurl = results.user.url;
@@ -1506,4 +1511,339 @@ exports.doCart = function(req, res) {
       });
     }
   );
+};
+
+
+exports.themtkform = function(req, res) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    async.parallel(
+      {
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        res.render("themtkform", {
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          userurl: userurl,
+          username: username,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
+};
+
+exports.themtk = function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    var us = req.body.username
+    console.log(us)
+    async.parallel(
+      {
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        user: function(callback){
+          User.findOne({username: us})
+            .exec(callback);
+        }
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.user == null) {
+          var err = new Error("User not found");
+          err.status = 404;
+          return next(err);
+        }
+        results.user.name = "Admin"
+        results.user.save()
+        res.render("themtkform", {
+          thongbao: "Cấp quyền thành công",
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          userurl: userurl,
+          username: username,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
+};
+
+exports.datmua = function(req, res) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    var tongtien = 0;
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    async.parallel(
+      {
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        for(var i = 0; i < cart.length; i++){
+          tongtien += (parseFloat(cart[i].giaban) * 1000000)
+        }
+        res.render("datmuaform", {
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          cart: cart,
+          tongtien: tongtien,
+          userurl: userurl,
+          username: username,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
+};
+
+exports.thanhtoan = function(req, res) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    var tenTK = req.body.tenTK
+    var tenKH = req.body.tenKH
+    var sdt = req.body.sdt
+    var diachi = req.body.diachi
+    var tenSP = req.body.tenSP
+    var tongtien = req.body.tongtien
+    var tongtien1 = tongtien.split(" ")[0]
+    async.parallel(
+      {
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        ddh: function(callback){
+          var dondathang = new DDH({tenTK: tenTK, tenKH: tenKH, sdt: sdt, diachi: diachi, tenSP: tenSP, tongtien: tongtien1, trangthai: "Chưa giao"})
+          DDH.create(dondathang)
+          callback();
+        }
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        res.render("datmuaform", {
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          thongbao: "Đặt mua thành công",
+          userurl: userurl,
+          username: username,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
+};
+
+
+exports.dondathanglist = function(req, res) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    async.parallel(
+      {
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        ddhs: function(callback){
+          DDH.find()
+            .exec(callback);
+        }
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        res.render("list_ddh_admin", {
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          ddh_list: results.ddhs,
+          userurl: userurl,
+          username: username,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
+};
+
+exports.luuSP = function(req, res) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    var id = req.body.id;
+    var trangthai = req.body.trangthai;
+    console.log(id);
+    console.log(trangthai);
+    async.series(
+      {
+        ddh: function(callback){
+          DDH.findById(id, function(err, dondathang) {
+            dondathang.trangthai = trangthai;
+            dondathang.save();
+          })
+            .exec(callback);
+        },
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        
+        ddhs: function(callback){
+          DDH.find()
+            .exec(callback);
+        }
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        res.render("list_ddh_admin", {
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          ddh_list: results.ddhs,
+          thongbao: "Đã lưu",
+          userurl: userurl,
+          username: username,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
 };

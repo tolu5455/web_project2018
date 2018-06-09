@@ -1,0 +1,54 @@
+<h4>
+    <a href="/catalog/admin/admin">Trang chủ Admin</a>
+</h4>
+<h2>DANH SÁCH LAPTOP</h2>
+<div style="color: rgb(0, 202, 0)">
+                <span>{{thongbao}}</span>
+            </div>
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Tên tài khoản</th>
+            <th class="text-center">Tên khách hàng</th>
+            <th class="text-center">Số điện thoại</th>
+            <th class="text-center">Địa chỉ giao</th>
+            <th class="text-center">Tên sản phẩm</th>
+            <th class="text-center">Tổng tiền</th>
+            <th class="text-center">Trạng thái</th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    {{#each ddh_list}}
+    <tbody>
+        <tr>
+            <td>{{this._id}}</td>
+            <td>{{this.tenTK}}</td>
+            <td>{{this.tenKH}}</td>
+            <td>{{this.sdt}}</td>
+            <td>{{this.diachi}}</td>
+            <td>{{this.tenSP}}</td>
+            <td>{{this.tongtien}} đồng</td>
+            <td>
+                <select id="select_trangthai">
+                    <option value="">{{this.trangthai}}</option>
+                    <option value="chuagiao">Chưa giao</option>
+                    <option value="danggiao">Đang giao</option>
+                    <option value="dagiao">Đã giao</option>
+                </select>
+            </td>
+            <td>
+                <form method="POST" action="luuSP">
+                    <input style="display:none" type="text" name="id" value="{{this._id}}">
+                    <input style="display:none" type="text" name="trangthai" id="trangthai">
+                    <button type="submit" style="color: red; background-color: white">Lưu</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+    {{/each}}
+</table>
+
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script src="/javascripts/ddh.js"></script>
