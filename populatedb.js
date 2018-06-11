@@ -55,6 +55,7 @@ function computerCreate(
   ram,
   cpu,
   manhinh,
+  soluongton,
   nhasanxuat,
   cb
 ) {
@@ -66,7 +67,8 @@ function computerCreate(
     gianhap: gianhap,
     ram: ram,
     cpu: cpu,
-    manhinh: manhinh
+    manhinh: manhinh,
+    soluongton: soluongton
   };
   if (nhasanxuat != false) computerdetail.nhasanxuat = nhasanxuat;
 
@@ -119,6 +121,7 @@ function createComputers(cb) {
           "4 GB",
           "Intel Core i5-7200U",
           "15.6 inch, HD(1366x768)",
+          50,
           nhasanxuats[0],
           callback
         );
@@ -133,6 +136,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-7200U",
             "15.6 inch, HD(1366x768)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -147,6 +151,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-7200U",
             "14 inch, HD (1366 x 768)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -162,6 +167,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-7200U",
             "15.6 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -176,6 +182,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "15.6 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -190,6 +197,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-7200U",
             "15.6 inch, HD (1366 x 768)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -204,6 +212,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i7-7500",
             "15.6 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -218,6 +227,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i7-8550U",
             "13.3 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -232,6 +242,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i7-7700HQ",
             "15.6 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -246,6 +257,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i7-8550U",
             "13.3 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[0],
             callback
           );
@@ -260,7 +272,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-7100U",
             "14 inch, Full HD (1920 x 1080)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -274,7 +287,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-7100U",
             "14 inch, Full HD (1920 x 1080)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -288,7 +302,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-7100U",
             "14 inch, HD (1366 x 768)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -302,7 +317,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-7100U",
             "11.6 inch, HD (1366 x 768)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -316,7 +332,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250",
             "15.6 inch, Full HD (1920 x 1080)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -330,7 +347,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i7-8550U",
             "15.6 inch, Full HD (1920 x 1080)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -344,7 +362,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "13.3 inch, Full HD (1920 x 1080)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -358,7 +377,8 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i7-8550U",
             "13.3 inch, Full HD (1920 x 1080)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -372,7 +392,8 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5-7200U",
             "15.6 inch, Full HD (1920 x 1080)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -386,7 +407,8 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i7-7600U",
             "15.6 inch, Full HD (1920 x 1080)",
-            nhasanxuats[2],
+            50,
+            nhasanxuats[1],
             callback
           );
       },
@@ -400,7 +422,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-6006U",
             "14 inch, HD (1366 x 768)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -414,7 +437,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-6006U",
             "14 inch,Full HD (1920 x 1080)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -428,7 +452,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-7130U",
             "15.6 inch, Full HD (1920 x 1080)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -442,7 +467,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-7130U",
             "14 inch, HD (1366 x 768)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -456,7 +482,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "14 inch, Full HD (1920 x 1080)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -470,7 +497,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "	15.6 inch, Full HD (1920 x 1080)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -484,7 +512,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "14 inch, Full HD (1920 x 1080)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -498,7 +527,8 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i7-8550U",
             "15.6 inch, Full HD (1920 x 1080)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -512,7 +542,8 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5-8250U",
             "13.3 inch, Full HD (1920 x 1080)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -526,7 +557,8 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i7-8550U",
             "13.3 inch, Full HD (1920 x 1080)",
-            nhasanxuats[1],
+            50,
+            nhasanxuats[2],
             callback
           );
       },
@@ -540,6 +572,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-7200U",
             "15.6 inch, HD (1366 x 768)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -554,6 +587,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "15.6 inch, HD (1366 x 768)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -568,6 +602,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i3-7100U",
             "14 inch, Full HD (1920 x 1080)", 
+            50,
             nhasanxuats[3],
             callback
           );
@@ -582,6 +617,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "15.6 inch, HD (1366 x 768)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -596,6 +632,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "15.6 inch, HD (1366 x 768)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -610,6 +647,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "15.6 inch, HD (1366 x 768)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -624,6 +662,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i5-8250U",
             "15.6 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -638,6 +677,7 @@ function createComputers(cb) {
             "4 GB",
             "Intel Core i7-8550U",
             "15.6 inch, HD (1366 x 768)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -652,6 +692,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5-8250U",
             "14 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -659,13 +700,14 @@ function createComputers(cb) {
       function(callback) {
         computerCreate(
             "Asus410",
-            "Laptop Asus FX503032S1VWS8VD",
+            "Laptop Asus FX503 Full Led",
             "/images/Laptop_40.jpg",
             "24.490.000",
             "20.800.000",
             "8 GB",
             "Intel Core i7-7700HQ",
             "15.6 inch, Full HD (1920 x 1080)",
+            50,
             nhasanxuats[3],
             callback
           );
@@ -680,6 +722,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5 Broadwell, 1.80 GHz",
             "13.3 inch, WXGA+(1440 x 900)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -694,6 +737,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5 Broadwell, 1.80 GHz",
             "13.3 inch, WXGA+(1440 x 900)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -708,6 +752,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5 Kabylake, 2.30 GHz",
             "13.3 inch, Retina (2560 x 1600)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -722,6 +767,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core M, M3, 1.20 GHz",
             "12 inch, Retina (2304 x 1440)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -736,6 +782,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core M, M3, 1.20 GHz",
             "12 inch, Retina (2304 x 1440)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -750,6 +797,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core M, M3, 1.20 GHz",
             "13.3 inch, Retina (2304 x 1440)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -764,6 +812,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5 Kabylake, 2.30 GHz",
             "13.3 inch, Retina (2560 x 1600)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -778,6 +827,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5 Kabylake, 3.10 GHz",
             "13.3 inch, Retina (2560 x 1600)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -792,6 +842,7 @@ function createComputers(cb) {
             "8 GB",
             "Intel Core i5 Kabylake, 3.10 GHz",
             "13.3 inch, Retina (2560 x 1600)",
+            50,
             nhasanxuats[4],
             callback
           );
@@ -806,6 +857,7 @@ function createComputers(cb) {
             "16 GB",
             "Intel Core i7 Kabylake, 2.80 GHz",
             "15.4 inch, Retina (2880 x 1800)",
+            50,
             nhasanxuats[4],
             callback
           );

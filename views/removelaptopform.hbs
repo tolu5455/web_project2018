@@ -44,9 +44,9 @@
     }
 </style>
 <h4 style="margin-left: 100px; margin-top: 40px">
-    <a href="/catalog/admin">Trang chủ Admin</a>
+    <a href="/catalog/admin/admin">Trang chủ Admin</a>
 </h4>
-<form class="modal-content" action="/catalog/remove">
+<form class="modal-content" action="/catalog/remove" method="POST">
     <div class="container1">
         <div class="row">
             <h1>Xóa laptop</h1> <br>
@@ -58,7 +58,7 @@
             </label>
 
             <div class="autocomplete">
-              <input id="namanyay-search-box1" name="ten" size="40" type="text" placeholder="Tên sản phẩm..." autocomplete="off"/>
+              <input id="namanyay-search-box1" name="ten" size="40" type="text" placeholder="Tên sản phẩm..." autocomplete="off" autofocus/>
             </div>
 
         </div>

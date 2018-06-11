@@ -44,9 +44,9 @@
     }
 </style>
 <h4 style="margin-left: 100px; margin-top: 40px">
-    <a href="/catalog/admin">Trang chủ Admin</a>
+    <a href="/catalog/admin/admin">Trang chủ Admin</a>
 </h4>
-<form class="modal-content" action="/catalog/update2">
+<form class="modal-content" action="/catalog/update2" method="POST">
     <div class="container1">
         <div class="row">
             <h1>Cập nhật thông tin nhà sản xuất</h1> <br>
@@ -58,7 +58,7 @@
             </label>
 
             <div class="autocomplete">
-              <input name="ten" size="40" type="text" placeholder="Tên nhà sản xuất..." autocomplete="off"/>
+              <input name="ten" size="40" type="text" placeholder="Tên nhà sản xuất..." autocomplete="off" autofocus/>
             </div>
 
         </div>

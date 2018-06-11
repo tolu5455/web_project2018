@@ -1,0 +1,110 @@
+
+<div class="container-login">
+    <div class="row login">
+        <div class="col-md-4">
+            <div class="panel with-nav-tabs panel-info">
+                
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div id="login" class="tab-pane fade in active register">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <h2 class="text-center" style="color: #5a88ca;">
+                                        <strong> Đăng ký </strong>
+                                    </h2>
+                                    <hr />
+                                    <form action="/auth/register" method="POST">
+                                    <div class="row">
+                                        <span style="margin-left:20px; padding-bottom:30px; color:red">{{thongbao}}</span>
+                                    </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                                        </div>
+                                                        <input type="text" placeholder="Your name" name="name" autofocus class="form-control" id="us" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-user"></span>
+                                                        </div>
+                                                        <input type="text" placeholder="Username" name="username" autofocus class="form-control" id="us" pattern=".{5,}" title="Ít nhất 6 ký tự" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-lock"></span>
+                                                        </div>
+
+                                                        <input type="password" placeholder="Password" name="password" class="form-control" id="pw" pattern=".{6,}" title="Ít nhất 6 ký tự" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                         <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-lock"></span>
+                                                        </div>
+
+                                                        <input type="password" placeholder="Re-type password" name="repass" class="form-control" id="pw" pattern=".{6,}" title="Ít nhất 6 ký tự" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-envelope"></span>
+                                                        </div>
+
+                                                        <input type="email" placeholder="Type Gmail account" name="mail" class="form-control" id="mail" pattern=".{6,}" title="Ít nhất 6 ký tự" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <button type="submit" class="btn btn-success btn-block btn-lg"> Đăng ký </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/stylesheets/login.css">
