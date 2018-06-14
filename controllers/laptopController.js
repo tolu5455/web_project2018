@@ -1151,7 +1151,7 @@ exports.laptop_add = function(req, res) {
           var _cpu = req.body.cpu;
           var _manhinh = req.body.manhinh;
           var _soluongton=req.body.soluonglaptop;
-          var _imagepath = '/upload/' +req.file.filename;
+          var _imagepath = '/images/' +req.file.filename;
           async.series(
             {
               laptopadd: function(callback) {

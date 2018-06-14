@@ -8,7 +8,7 @@ const unlinkAsync = promisify(fs.unlink)
 
 //set storage engine
 const storage = multer.diskStorage({
-    destination: 'public/upload/',
+    destination: 'public/images/',
     filename: function(req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
