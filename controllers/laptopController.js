@@ -1750,6 +1750,7 @@ exports.thanhtoan = function(req, res) {
           err.status = 404;
           return next(err);
         }
+        cart = [];
         res.render("datmuaform", {
           laptop_list: results.laptops,
           nhasanxuat_list: results.nhasanxuat,
@@ -1761,6 +1762,7 @@ exports.thanhtoan = function(req, res) {
           display3: dp3,
           display4: dp4
         });
+
       }
     );
   }
