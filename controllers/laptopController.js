@@ -4,6 +4,7 @@ var async = require("async");
 var DDH = require("../models/DonDatHang");
 var User = require("../models/user");
 var cart = [];
+var Image=require("./UploadImage");
 
 var dp1 = "";
 var dp2 = "";
@@ -1108,66 +1109,13 @@ exports.laptop_add = function(req, res) {
     dp4 = "none";
     res.redirect("/auth/login");
   } else {
-    dp1 = "none";
-    dp2 = "none";
-    dp3 = "";
-    dp4 = "";
-    var _nsx = req.body.nsx;
-    var _maso = req.body.maso;
-    var _ten = req.body.ten;
-    var _giaban = req.body.giaban;
-    var _gianhap = req.body.gianhap;
-    var _ram = req.body.ram;
-    var _cpu = req.body.cpu;
-    var _manhinh = req.body.manhinh;
-    var _imagepath = "/images/DellAdd1.png";
-
-    async.series(
-      {
-        laptopadd: function(callback) {
-          Nhasanxuat.findOne(
-            {
-              ten: _nsx
-            },
-            function(err, nsx) {
-              if (err) return next(err);
-              var newlaptop = new Laptop({
-                maso: _maso,
-                ten: _ten,
-                giaban: _giaban,
-                gianhap: _gianhap,
-                ram: _ram,
-                cpu: _cpu,
-                manhinh: _manhinh,
-                hinh: _imagepath,
-                nhasanxuat: nsx.id
-              });
-              Laptop.create(newlaptop);
-            }
-          ).exec(callback);
-        },
-        nhasanxuat: function(callback) {
-          Nhasanxuat.find().exec(callback);
-        },
-        laptops: function(callback) {
-          Laptop.find()
-            .populate("nhasanxuat")
-            .exec(callback);
-        }
-      },
-      function(err, results) {
-        if (err) {
-          return next(err);
-        }
-        if (results.nhasanxuat == null) {
-          var err = new Error("Nha san xuat not found");
-          err.status = 404;
-          return next(err);
-        }
-        res.render("themlaptopform", {
+    Image.Upload(req,res,(err)=>{
+      if(err){
+        console.log(err);
+        return res.render("themlaptopform", {
           laptop_list: results.laptops,
           nhasanxuat_list: results.nhasanxuat,
-          thongbao: "Thêm thành công",
+          thongbao: "Upload ảnh thất bại,hãy thử lại",
           userurl: userurl,
           username: username,
           display1: dp1,
@@ -1175,9 +1123,97 @@ exports.laptop_add = function(req, res) {
           display3: dp3,
           display4: dp4
         });
-      }
-    );
-  }
+      }else{
+        if(req.file==undefined){
+          console.log('Chưa có ảnh được chọn');
+          return res.render("themlaptopform", {
+            laptop_list: results.laptops,
+            nhasanxuat_list: results.nhasanxuat,
+            thongbao: "Chưa có hình được chọn",
+            userurl: userurl,
+            username: username,
+            display1: dp1,
+            display2: dp2,
+            display3: dp3,
+            display4: dp4
+          });
+        }else{
+          dp1 = "none";
+          dp2 = "none";
+          dp3 = "";
+          dp4 = "";
+          var _nsx = req.body.nsx;
+          var _maso = req.body.maso;
+          var _ten = req.body.ten;
+          var _giaban = req.body.giaban;
+          var _gianhap = req.body.gianhap;
+          var _ram = req.body.ram;
+          var _cpu = req.body.cpu;
+          var _manhinh = req.body.manhinh;
+          var _soluongton=req.body.soluonglaptop;
+          var _imagepath = '/upload/' +req.file.filename;
+          async.series(
+            {
+              laptopadd: function(callback) {
+                Nhasanxuat.findOne(
+                  {
+                    ten: _nsx
+                  },
+                  function(err, nsx) {
+                    if (err) return next(err);
+                    var newlaptop = new Laptop({
+                      maso: _maso,
+                      ten: _ten,
+                      soluongton:_soluongton,
+                      giaban: _giaban,
+                      gianhap: _gianhap,
+                      ram: _ram,
+                      cpu: _cpu,
+                      manhinh: _manhinh,
+                      hinh: _imagepath,
+                      nhasanxuat: nsx.id
+                    });
+                    Laptop.create(newlaptop);
+                  }
+                ).exec(callback);
+              },
+              nhasanxuat: function(callback) {
+                Nhasanxuat.find().exec(callback);
+              },
+              laptops: function(callback) {
+                Laptop.find()
+                  .populate("nhasanxuat")
+                  .exec(callback);
+              }
+            },
+            function(err, results) {
+              if (err) {
+                return next(err);
+              }
+              if (results.nhasanxuat == null) {
+                var err = new Error("Nha san xuat not found");
+                err.status = 404;
+                return next(err);
+              }
+              res.render("themlaptopform", {
+                laptop_list: results.laptops,
+                nhasanxuat_list: results.nhasanxuat,
+                thongbao: "Thêm thành công",
+                userurl: userurl,
+                username: username,
+                display1: dp1,
+                display2: dp2,
+                display3: dp3,
+                display4: dp4
+              });
+            }
+          );
+        }
+        }
+      
+  
+      })
+    }
 };
 
 exports.nsx_themnsx = function(req, res) {
