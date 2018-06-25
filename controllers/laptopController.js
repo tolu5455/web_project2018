@@ -1885,3 +1885,66 @@ exports.luuSP = function(req, res) {
     );
   }
 };
+
+
+exports.client_information = function(req, res) {
+  if (req.isAuthenticated()) {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+  } else {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+  }
+  async.parallel(
+    {
+      nhasanxuat: function(callback) {
+        Nhasanxuat.find().exec(callback);
+      },
+      laptops: function(callback) {
+        Laptop.find({}, "ten hinh giaban")
+          .populate("nhasanxuat")
+          .exec(callback);
+      },
+      user: function(callback) {
+        User.findOne({
+          name: username
+        }).exec(callback);
+      }
+    },
+    function(err, results) {
+      if (err) {
+        return next(err);
+      }
+      if (results.nhasanxuat == null) {
+        var err = new Error("Nha san xuat not found");
+        err.status = 404;
+        return next(err);
+      }
+      console.log(username);
+      var _hovaten = results.user.name;
+      var _gioitinh=results.user.sex;
+      var _ngaysinh=results.user.birthday;
+      var _diachi=results.user.address;
+      var _sdt=results.user.phone;
+      res.render("client_information", {
+        laptop_list: results.laptops,
+        nhasanxuat_list: results.nhasanxuat,
+        userurl: userurl,
+        username: results.user.name,
+        hovaten1:_hovaten,
+        gioitinh1:_gioitinh,
+        ngaysinh1:_ngaysinh,
+        diachi1:_diachi,
+        sdt1:_sdt,
+        display1: dp1,
+        display2: dp2,
+        display3: dp3,
+        display4: dp4
+      });
+    }
+  );
+};
