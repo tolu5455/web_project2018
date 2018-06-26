@@ -7,7 +7,11 @@ var UserSchema = new Schema({
     password: String,
     name: String,
     email: String,
-    role: String
+    role: String,
+    sex: String,
+    birthday: String,
+    address: String,
+    phone: String
 });
 
 UserSchema.virtual('url').get(function(){

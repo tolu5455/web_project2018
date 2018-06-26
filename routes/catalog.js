@@ -55,4 +55,8 @@ router.post('/thanhtoan', laptop_controller.thanhtoan);
 router.get('/dondathanglist', laptop_controller.dondathanglist);
 
 router.post('/luuSP', laptop_controller.luuSP);
+
+router.get('/user/:id',laptop_controller.client_information);
+
+router.post('/saveinformation',laptop_controller.saveClient_information);
 module.exports = router;
