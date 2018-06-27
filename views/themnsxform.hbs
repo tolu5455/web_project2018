@@ -43,10 +43,26 @@
         margin-bottom: 25px;
     }
 </style>
+
+<script>
+         function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgImage')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+
 <h4 style="margin-left: 100px; margin-top: 40px">
-    <a href="/catalog/admin">Trang chủ Admin</a>
+    <a href="/catalog/admin/admin">Trang chủ Admin</a>
 </h4>
-<form class="modal-content" action="/catalog/addnsx" method="POST">
+<form class="modal-content" action="/catalog/addnsx" method="POST" enctype="multipart/form-data">
     <div class="container1">
         <div class="row">
             <h1>Thêm Nhà Sản Xuất</h1> <br>
@@ -55,6 +71,13 @@
                 </div>
         </div>
         <hr>
+         <label for="myImage">
+            <b>Chọn ảnh</b>
+        </label>
+        <input class="form-control" name="myImage" type="file" onchange="readURL(this)">
+        <br>
+        <img id="imgImage" src="{{img}}" alt="Laptop Image" height="200" width="200">
+        <br><br>    
         <label>
             <b>Nhà sản xuất</b>
         </label>
