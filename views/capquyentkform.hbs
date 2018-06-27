@@ -46,27 +46,21 @@
 <h4 style="margin-left: 100px; margin-top: 40px">
     <a href="/catalog/admin/admin">Trang chủ Admin</a>
 </h4>
-<form class="modal-content" action="/auth/themtk" method="POST">
+<form class="modal-content" action="/catalog/capquyentk" method="POST">
     <div class="container1">
         <div class="row">
-            <h1>Thêm tài khoản mới</h1> <br>
+            <h1>Cấp quyền tài khoản</h1> <br>
             <div style="color: rgb(0, 202, 0)">
                     <span>{{thongbao}}</span>
                 </div>
         </div>
         <hr>
         <label>
-            <b>Nhập tên đăng nhập</b>
+            <b>Nhập tên tài khoản</b>
         </label>
         <input type="text" placeholder="tên đăng nhập" name="username" required autofocus>
-        <label>
-            <b>Nhập mật khẩu</b>
-        </label>
-        <br>
-        <input type="password"name="password" required>
-        <input type="text" name="name" style="display: none" value="{{username}}">
         <div class="text-center">
-            <button type="submit" class="btnupdate">Tạo</button>
+            <button type="submit" class="btnupdate">Cấp quyền</button>
         </div>
     </div>
 </form>

@@ -45,8 +45,8 @@ router.get('/cart', laptop_controller.cart);
 router.post('/doCart', laptop_controller.doCart);
 router.post('/xoacart', laptop_controller.xoacart);
 
-router.get('/themtk', laptop_controller.themtkform)
-router.post('/themtk', laptop_controller.themtk)
+router.get('/capquyentk', laptop_controller.capquyentkform)
+router.post('/capquyentk', laptop_controller.capquyentk)
 
 router.post('/datmua', laptop_controller.datmua);
 
@@ -55,4 +55,15 @@ router.post('/thanhtoan', laptop_controller.thanhtoan);
 router.get('/dondathanglist', laptop_controller.dondathanglist);
 
 router.post('/luuSP', laptop_controller.luuSP);
+
+router.get('/laptopless10/:page', laptop_controller.laptop_less_10);
+router.get('/laptop1020/:page', laptop_controller.laptop_10_20);
+router.get('/laptop2030/:page', laptop_controller.laptop_20_30);
+router.get('/laptopmore30/:page', laptop_controller.laptop_more_30);
+
+router.get('/themtkform', laptop_controller.themtk);
+router.get('/removetkform', laptop_controller.removetk);
+router.get('/updatetkform', laptop_controller.updatetk);
+
+router.post('/comment', laptop_controller.comment)
 module.exports = router;

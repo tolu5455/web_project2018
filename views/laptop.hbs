@@ -58,7 +58,7 @@
                                 </div>
 
                                 <form action="/catalog/doCart" class="cart" method="POST">
-                                    
+
                                     <input style="display:none" type="text" value="{{detail.laptop.ten}}" name="ten">
                                     <input style="display:none" type="text" value="{{detail.laptop.hinh}}" name="hinh">
                                     <input style="display:none" type="text" value="{{detail.laptop.giaban}}" name="gia">
@@ -66,47 +66,47 @@
                                 </form>
 
 
+                                <form action="/catalog/comment" method="POST">
+                                    <div role="tabpanel">
+                                        <ul class="product-tab" role="tablist">
+                                            <li role="presentation" class="active">
+                                                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Nhận xét</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                <h2>Thông tin chi tiết</h2>
+                                                <p>Ram: {{detail.laptop.ram}}
+                                                    <br> CPU: {{detail.laptop.cpu}}
+                                                    <br> Màn hình: {{detail.laptop.manhinh}}
+                                                </p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="profile">
+                                                <h2>Nhận xét</h2>
 
-                                <div role="tabpanel">
-                                    <ul class="product-tab" role="tablist">
-                                        <li role="presentation" class="active">
-                                            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Nhận xét</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                            <h2>Thông tin chi tiết</h2>
-                                            <p>Ram: {{detail.laptop.ram}}
-                                                <br> CPU: {{detail.laptop.cpu}}
-                                                <br> Màn hình: {{detail.laptop.manhinh}}
-                                            </p>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="profile">
-                                            <h2>Reviews</h2>
-                                            <div class="submit-review">
-                                                <p>
-                                                    <label for="name">Name</label>
-                                                    <input name="name" type="text">
-                                                </p>
-                                                <p>
-                                                    <label for="email">Email</label>
-                                                    <input name="email" type="email">
-                                                </p>
-                                                <p>
-                                                    <label for="review">Your review</label>
-                                                    <textarea name="review" id="" cols="30" rows="10"></textarea>
-                                                </p>
-                                                <p>
-                                                    <input type="submit" value="Submit">
-                                                </p>
+
+                                                <div class="submit-review">
+                                                    <p style="display:{{dpname}}">
+                                                        <label for="name">Tên</label>
+                                                        <input name="username" type="text">
+                                                    </p>
+                                                    <p>
+                                                        <label for="review">Nhận xét</label>
+                                                        <textarea name="comment" id="" cols="30" rows="10"></textarea>
+                                                    </p>
+                                                    <input style="display:none" type="text" value="{{detail.laptop.ten}}" name="ten">
+                                                    <p>
+                                                        <input type="submit" value="Gửi">
+                                                    </p>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                         <div class="single-product">
                             <div class="product-f-image">
                                 <img src="{{this.hinh}}" alt="">
-                                <div class="product-hover">                               
+                                <div class="product-hover">
                                     <a href="{{this.url}}" class="view-details-link">
                                         <i class="fa fa-link"></i> Xem chi tiết</a>
                                 </div>
@@ -135,6 +135,42 @@
                         {{/each}}
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .user_name {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .comments-list .media {
+        border-bottom: 1px dotted #ccc;
+    }
+
+    .container {
+        margin-bottom: 30px;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-8">
+            <div class="page-header">
+                <h1>Bình luận </h1>
+            </div>
+            <div class="comments-list">
+                {{#each cmt}}
+                <div class="media">
+                    <div class="media-body">                      
+                        <h4 class="media-heading user_name">{{this.tenKH}}</h4>
+                        {{this.noidung}}
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>

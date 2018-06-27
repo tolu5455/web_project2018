@@ -25,4 +25,10 @@ router.get('/forgot', auth.forgot);
 
 router.post('/retrieve', auth.retrieve)
 
+router.post('/themtk', auth.themtk);
+
+router.post('/xoatk', auth.xoatk)
+
+router.post('/suatk', auth.suatk)
+
 module.exports = router;

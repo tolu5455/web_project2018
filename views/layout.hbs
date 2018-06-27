@@ -91,6 +91,9 @@
             <li class="{{active2}}">
               <a href="/catalog/laptops/1">Sản phẩm</a>
             </li>
+            <li class="{{active3}}">
+              <a href="/catalog/cart">Giỏ hàng</a>
+            </li>
             <li>
               <div class="dropdown" style="display:{{dpbrand}}">
                 <span class="dropbtn">Hãng laptop</span>
@@ -102,9 +105,18 @@
                 </div>
               </div>
             </li>
-            <li class="{{active3}}">
-              <a href="/catalog/cart">Giỏ hàng</a>
+            <li>
+              <div class="dropdown">
+                <span class="dropbtn">Laptop theo giá</span>
+                <div class="dropdown-content">
+                  <a href="/catalog/laptopless10/1">Dưới 10 triệu</a>
+                  <a href="/catalog/laptop1020/1">10 triệu - 20 triệu</a>
+                  <a href="/catalog/laptop2030/1">20 triệu - 30 triệu</a>
+                  <a href="/catalog/laptopmore30/1">Trên 30 triệu</a>
+                </div>
+              </div>
             </li>
+
           </ul>
           <div style="display:{{dpsearch}}">
             <form id="searchthis" action="/catalog/search" style="display:inline;" method="get" autocomplete="off">
@@ -171,7 +183,7 @@
                 <a href="{{this.url}}">{{this.ten}}</a>
               </li>
               {{/each}}
-              
+
             </ul>
           </div>
         </div>
