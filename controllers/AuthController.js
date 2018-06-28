@@ -114,7 +114,7 @@ userController.verify = function (req, res) {
             });
           }
           res.render("login", {
-            thongbao: "Xác thực thành công!",
+            thongbao: "Kích hoạt thành công!",
             display1: dp1,
             display2: dp2,
             display3: dp3,

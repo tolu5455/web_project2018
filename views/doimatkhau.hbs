@@ -4,7 +4,7 @@
     }
 
     /* Full-width input fields */
-    input[type=text] {
+    input[type=password] {
         width: 100%;
         padding: 10px;
         margin: 0px 0 10px 0;
@@ -30,7 +30,7 @@
 
     .modal-content {
         background-color: #fefefe;
-        margin: 0% auto 15% auto;
+        margin: 5% auto 5% auto;
         border: 1px solid #888;
         width: 50%;
     }
@@ -42,41 +42,30 @@
     }
 </style>
 
-<form class="modal-content" action="/catalog/saveinformation" method="POST">
+<form class="modal-content" action="/catalog/doimatkhau" method="POST">
     <div class="container1">
         <div class="row">
-            <h1>Thông tin cá nhân</h1> <br>
-            <h4 style="margin-left: 20px; margin-top: 10px">
-              <a href="/catalog/doimatkhau">Đổi mật khẩu</a>
-            </h4>
+            <h1>Đổi mật khẩu</h1> <br>
             <div style="color: rgb(0, 202, 0)">
                     <span>{{thongbao}}</span>
                 </div>
         </div>
         <hr>
         <label>
-            <b>Họ và tên</b>
+            <b>Mật khẩu cũ</b>
         </label>
-        <input type="text" name="hovaten" value="{{hovaten1}}">
+        <input type="password" name="oldpass" >
         <label>
-            <b>Số điện thoại</b>
+            <b>Mật khẩu mới</b>
         </label>
-        <input type="text" name="sdt" value="{{sdt1}}">
+        <input type="password" name="newpass" >
         <label>
-            <b>Giới tính</b>
+            <b>Xác nhận mật khẩu mới</b>
         </label>
-        <input type="text" name="gioitinh" value="{{gioitinh1}}">
-        <label>
-            <b>Ngày sinh</b>
-        </label>
-        <input type="text" name="ngaysinh" value="{{ngaysinh1}}">
-        <label>
-            <b>Địa chỉ</b>
-        </label>
-        <input type="text" name="diachi" value="{{diachi1}}">
+        <input type="password" name="confirm">
 
         <div class="text-center">
-            <button type="submit" class="btnupdate">Lưu</button>
+            <button type="submit" class="btnupdate">Đổi mật khẩu</button>
         </div>
     </div>
 </form>

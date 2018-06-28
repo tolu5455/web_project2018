@@ -71,4 +71,9 @@ router.post('/comment', laptop_controller.comment)
 
 router.get('/timkiem',laptop_controller.timkiemform)
 router.post('/timkiem', laptop_controller.timkiem)
+
+router.get('/doimatkhau', laptop_controller.changePassword);
+
+router.post('/doimatkhau',laptop_controller.doChangepassword);
+
 module.exports = router;

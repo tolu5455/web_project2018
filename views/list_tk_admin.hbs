@@ -8,7 +8,11 @@
             <th class="text-center">Tên đăng nhập</th>
             <th class="text-center">Tên người dùng</th>
             <th class="text-center">Email</th>
-            
+            <th class="text-center">Số điện thoại</th>
+            <th class="text-center">Giới tính</th>
+            <th class="text-center">Ngày sinh</th>
+            <th class="text-center">Địa chỉ</th>
+            <th class="text-center">Loại tài khoản</th>
         </tr>
     </thead>
     {{#each taikhoan_list}}
@@ -17,6 +21,11 @@
             <td>{{this.username}}</td>
             <td>{{this.name}}</td>
             <td>{{this.email}}</td>
+            <td>{{this.phone}}</td>
+            <td>{{this.sex}}</td>
+            <td>{{this.birthday}}</td>
+            <td>{{this.address}}</td>
+            <td>{{this.role}}</td>
         </tr>
     </tbody>
     {{/each}}

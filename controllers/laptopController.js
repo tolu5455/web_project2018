@@ -15,6 +15,7 @@ var username = "";
 var userurl = "";
 var related_nsx = "";
 var related_nsx2 = "";
+var related_nsx3 = "";
 var tensp = "";
 exports.index = function (req, res) {
   if (req.isAuthenticated()) {
@@ -441,11 +442,7 @@ exports.laptop_admin = function (req, res) {
                 .populate("nhasanxuat")
                 .exec(callback);
             },
-            user: function (callback) {
-              User.findOne({
-                username: req.params.username
-              }).exec(callback);
-            }
+
           },
           function (err, results) {
             if (err) {
@@ -457,12 +454,7 @@ exports.laptop_admin = function (req, res) {
               return next(err);
             }
 
-            username = results.user.name;
-            if (username == "Admin") {
-              userurl = "/catalog/admin/admin";
-            } else {
-              userurl = results.user.url;
-            }
+
             res.render("admin", {
               laptop_list: results.laptops,
               nhasanxuat_list: results.nhasanxuat,
@@ -1186,162 +1178,52 @@ exports.laptop_add = function (req, res) {
                 display4: dp4
               });
             } else {
-                var _nsx = req.body.nsx;
-                var _maso = req.body.maso;
-                var _ten = req.body.ten;
-                var _giaban = req.body.giaban;
-                var _gianhap = req.body.gianhap;
-                var _ram = req.body.ram;
-                var _cpu = req.body.cpu;
-                var _manhinh = req.body.manhinh;
-                var _soluongton = req.body.soluonglaptop;
-                var _imagepath = '/images/' + req.file.filename;
-                Nhasanxuat.findOne({ten: _nsx},function (err, nsx) {
-                    if (err) return next(err);
-                    var newlaptop = new Laptop({
-                      maso: _maso,
-                      ten: _ten,
-                      soluongton: _soluongton,
-                      giaban: _giaban,
-                      gianhap: _gianhap,
-                      ram: _ram,
-                      cpu: _cpu,
-                      manhinh: _manhinh,
-                      hinh: _imagepath,
-                      nhasanxuat: nsx.id
-                    });
-                    Laptop.create(newlaptop);
-                  }
-                );
-                res.render("themnsxform", {
-                  laptop_list: results.laptops,
-                  nhasanxuat_list: results.nhasanxuat,
-                  thongbao: "Thêm thành công",
-                  userurl: userurl,
-                  username: username,
-                  display1: dp1,
-                  display2: dp2,
-                  display3: dp3,
-                  display4: dp4
+              var _nsx = req.body.nsx;
+              var _maso = req.body.maso;
+              var _ten = req.body.ten;
+              var _giaban = req.body.giaban;
+              var _gianhap = req.body.gianhap;
+              var _ram = req.body.ram;
+              var _cpu = req.body.cpu;
+              var _manhinh = req.body.manhinh;
+              var _soluongton = req.body.soluonglaptop;
+              var _imagepath = '/images/' + req.file.filename;
+              Nhasanxuat.findOne({
+                ten: _nsx
+              }, function (err, nsx) {
+                if (err) return next(err);
+                var newlaptop = new Laptop({
+                  maso: _maso,
+                  ten: _ten,
+                  soluongton: _soluongton,
+                  giaban: _giaban,
+                  gianhap: _gianhap,
+                  ram: _ram,
+                  cpu: _cpu,
+                  manhinh: _manhinh,
+                  hinh: _imagepath,
+                  nhasanxuat: nsx.id
                 });
+                Laptop.create(newlaptop);
+              });
+              res.render("themlaptopform", {
+                laptop_list: results.laptops,
+                nhasanxuat_list: results.nhasanxuat,
+                thongbao: "Thêm thành công",
+                userurl: userurl,
+                username: username,
+                display1: dp1,
+                display2: dp2,
+                display3: dp3,
+                display4: dp4
+              });
             }
           }
-      })
+        })
       }
     );
-}
+  }
 };
-//   if (!req.isAuthenticated()) {
-//     dp1 = "";
-//     dp2 = "";
-//     dp3 = "none";
-//     dp4 = "none";
-//     res.redirect("/auth/login");
-//   } else {
-//     Image.Upload(req, res, (err) => {
-//       if (err) {
-//         console.log(err);
-//         return res.render("themlaptopform", {
-//           laptop_list: results.laptops,
-//           nhasanxuat_list: results.nhasanxuat,
-//           thongbao: "Upload ảnh thất bại,hãy thử lại",
-//           userurl: userurl,
-//           username: username,
-//           display1: dp1,
-//           display2: dp2,
-//           display3: dp3,
-//           display4: dp4
-//         });
-//       } else {
-//         if (req.file == undefined) {
-//           console.log('Chưa có ảnh được chọn');
-//           return res.render("themlaptopform", {
-//             laptop_list: results.laptops,
-//             nhasanxuat_list: results.nhasanxuat,
-//             thongbao: "Chưa có hình được chọn",
-//             userurl: userurl,
-//             username: username,
-//             display1: dp1,
-//             display2: dp2,
-//             display3: dp3,
-//             display4: dp4
-//           });
-//         } else {
-//           dp1 = "none";
-//           dp2 = "none";
-//           dp3 = "";
-//           dp4 = "";
-//           var _nsx = req.body.nsx;
-//           var _maso = req.body.maso;
-//           var _ten = req.body.ten;
-//           var _giaban = req.body.giaban;
-//           var _gianhap = req.body.gianhap;
-//           var _ram = req.body.ram;
-//           var _cpu = req.body.cpu;
-//           var _manhinh = req.body.manhinh;
-//           var _soluongton = req.body.soluonglaptop;
-//           var _imagepath = '/images/' + req.file.filename;
-//           async.series({
-//               laptopadd: function (callback) {
-//                 Nhasanxuat.findOne({
-//                     ten: _nsx
-//                   },
-//                   function (err, nsx) {
-//                     if (err) return next(err);
-//                     var newlaptop = new Laptop({
-//                       maso: _maso,
-//                       ten: _ten,
-//                       soluongton: _soluongton,
-//                       giaban: _giaban,
-//                       gianhap: _gianhap,
-//                       ram: _ram,
-//                       cpu: _cpu,
-//                       manhinh: _manhinh,
-//                       hinh: _imagepath,
-//                       nhasanxuat: nsx.id
-//                     });
-//                     Laptop.create(newlaptop);
-//                   }
-//                 ).exec(callback);
-//               },
-//               nhasanxuat: function (callback) {
-//                 Nhasanxuat.find().exec(callback);
-//               },
-//               laptops: function (callback) {
-//                 Laptop.find()
-//                   .populate("nhasanxuat")
-//                   .exec(callback);
-//               }
-//             },
-//             function (err, results) {
-//               if (err) {
-//                 return next(err);
-//               }
-//               if (results.nhasanxuat == null) {
-//                 var err = new Error("Nha san xuat not found");
-//                 err.status = 404;
-//                 return next(err);
-//               }
-//               res.render("themlaptopform", {
-//                 laptop_list: results.laptops,
-//                 nhasanxuat_list: results.nhasanxuat,
-//                 thongbao: "Thêm thành công",
-//                 userurl: userurl,
-//                 username: username,
-//                 display1: dp1,
-//                 display2: dp2,
-//                 display3: dp3,
-//                 display4: dp4
-//               });
-//             }
-//           );
-//         }
-//       }
-
-
-//     })
-//   }
-// };
 
 exports.nsx_themnsx = function (req, res) {
   if (!req.isAuthenticated()) {
@@ -1452,31 +1334,31 @@ exports.nsx_add = function (req, res) {
               var _nsx = req.body.nsx;
               var _ttbh = req.body.ttbh;
               var _imagepath = '/images/' + req.file.filename;
-                var newnsx = new Nhasanxuat({
+              var newnsx = new Nhasanxuat({
                 ten: _nsx,
                 trungtambaohanh: _ttbh,
                 hinh: _imagepath
-                });
-                Nhasanxuat.create(newnsx);
-                res.render("themnsxform", {
-                  laptop_list: results.laptops,
-                  nhasanxuat_list: results.nhasanxuat,
-                  thongbao: "Thêm thành công",
-                  userurl: userurl,
-                  username: username,
-                  display1: dp1,
-                  display2: dp2,
-                  display3: dp3,
-                  display4: dp4
-                });
+              });
+              Nhasanxuat.create(newnsx);
+              res.render("themnsxform", {
+                laptop_list: results.laptops,
+                nhasanxuat_list: results.nhasanxuat,
+                thongbao: "Thêm thành công",
+                userurl: userurl,
+                username: username,
+                display1: dp1,
+                display2: dp2,
+                display3: dp3,
+                display4: dp4
+              });
             }
           }
-      })
-        
+        })
+
       }
     );
-   
-}
+
+  }
 };
 
 exports.list_taikhoan = function (req, res) {
@@ -2317,6 +2199,8 @@ exports.laptop_more_30 = function (req, res, next) {
 exports.comment = function (req, res, next) {
   var us = ""
   var comment = ""
+  var moinhat = [];
+  var lienquan = [];
   if (req.isAuthenticated()) {
     dp1 = "none";
     dp2 = "none";
@@ -2334,7 +2218,7 @@ exports.comment = function (req, res, next) {
     us = req.body.username
     comment = req.body.comment
   }
-  async.parallel({
+  async.series({
       nhasanxuat: function (callback) {
         Nhasanxuat.find().exec(callback);
       },
@@ -2345,10 +2229,34 @@ exports.comment = function (req, res, next) {
       },
       laptop: function (callback) {
         Laptop.findOne({
-            ten: req.body.ten
+            ten: tensp
+          }, function(err, lapinfo){
+            related_nsx3 = lapinfo.nhasanxuat.id
           })
           .populate("nhasanxuat")
           .exec(callback)
+      },
+      laptop_brand: function(callback){
+        Laptop.find({nhasanxuat: related_nsx3})
+          .populate("nhasanxuat")
+          .exec(callback);
+      },
+      comment: function (callback) {
+        CMT.findOne({
+          tenSP: tensp
+        }, function (err, bl) {
+          var cmt = new CMT({
+            tenSP: req.body.ten,
+            tenKH: us,
+            noidung: comment
+          })
+          CMT.create(cmt)
+        }).exec(callback)
+      },
+      cmt: function (callback) {
+        CMT.find({
+          tenSP: tensp
+        }).exec(callback)
       }
     },
     function (err, results) {
@@ -2360,16 +2268,20 @@ exports.comment = function (req, res, next) {
         err.status = 404;
         return next(err);
       }
-      var cmt = new CMT({
-        tenSP: req.body.ten,
-        tenKH: us,
-        noidung: comment
-      })
-      CMT.create(cmt)
-      res.render("list", {
+      for (var i = 0; i < 4; i++) {
+        moinhat.push(results.laptops[Math.floor(Math.random() * 49)]);
+      }
+
+      for (var i = 0; i < 3; i++) {
+        lienquan.push(results.laptop_brand[Math.floor(Math.random() * 9)]);
+      }
+      res.render("laptop", {
+        detail: results,
         laptop_list: results.laptops,
         nhasanxuat_list: results.nhasanxuat,
-        active1: "active",
+        cmt: results.cmt,
+        moinhat: moinhat,
+        lienquan: lienquan,
         userurl: userurl,
         username: username,
         display1: dp1,
@@ -2733,8 +2645,9 @@ exports.timkiem = function (req, res) {
       },
       laptop: function (callback) {
         Laptop.find({
-            giaban: {     
-              $gt: low_pr, $lt: high_pr
+            giaban: {
+              $gt: low_pr,
+              $lt: high_pr
             }
           })
           .populate("nhasanxuat")
@@ -2745,8 +2658,8 @@ exports.timkiem = function (req, res) {
       if (err) {
         return next(err);
       }
-      for(var i = 0; i < results.laptop.length; i++){
-        if(results.laptop[i].nhasanxuat.ten == brand) brand2.push(results.laptop[i])
+      for (var i = 0; i < results.laptop.length; i++) {
+        if (results.laptop[i].nhasanxuat.ten == brand) brand2.push(results.laptop[i])
       }
       res.render("list2", {
         laptop_list: results.laptops,
@@ -2761,4 +2674,158 @@ exports.timkiem = function (req, res) {
       });
     }
   );
+};
+
+exports.changePassword = function (req, res) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    async.parallel({
+        nhasanxuat: function (callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function (callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        user: function (callback) {
+          User.findOne({
+            username: req.params.username
+          }).exec(callback);
+        }
+      },
+      function (err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        res.render("doimatkhau", {
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          userurl: userurl,
+          username: username,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
+};
+
+
+exports.doChangepassword = function (req, res, next) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    var oldpassword = req.body.oldpass;
+    var newpassword = req.body.newpass;
+    var confirmpassword = req.body.confirm;
+
+    async.series({
+        nhasanxuat: function (callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function (callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        user: function (callback) {
+          User.findOne({
+            username: req.params.username
+          }).exec(callback);
+        }
+      },
+      function (err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        if (oldpassword == "" || newpassword == "" || confirmpassword == "") {
+          res.render("doimatkhau", {
+            laptop_list: results.laptops,
+            nhasanxuat_list: results.nhasanxuat,
+            userurl: userurl,
+            username: username,
+            display1: dp1,
+            display2: dp2,
+            display3: dp3,
+            display4: dp4,
+            thongbao: "Bạn phải điền đủ dữ liệu vào các ô"
+          });
+        } else {
+
+          if (newpassword == confirmpassword) {
+            User.findById(req.user._id).exec(function (err, user) {
+              user.changePassword(oldpassword, newpassword, function (err) {
+                if (err) {
+                  res.render("doimatkhau", {
+                    laptop_list: results.laptops,
+                    nhasanxuat_list: results.nhasanxuat,
+                    userurl: userurl,
+                    username: username,
+                    display1: dp1,
+                    display2: dp2,
+                    display3: dp3,
+                    display4: dp4,
+                    thongbao: "Mật khẩu cũ không đúng , hãy thử lại !"
+                  });
+                }
+                res.render("doimatkhau", {
+                  laptop_list: results.laptops,
+                  nhasanxuat_list: results.nhasanxuat,
+                  userurl: userurl,
+                  username: username,
+                  display1: dp1,
+                  display2: dp2,
+                  display3: dp3,
+                  display4: dp4,
+                  thongbao: "Đổi mật khẩu thành công"
+                });
+              })
+            })
+          } else {
+            res.render("doimatkhau", {
+              laptop_list: results.laptops,
+              nhasanxuat_list: results.nhasanxuat,
+              userurl: userurl,
+              username: username,
+              display1: dp1,
+              display2: dp2,
+              display3: dp3,
+              display4: dp4,
+              thongbao: "Mật khẩu xác nhận không đúng"
+            });
+          }
+        }
+      }
+    );
+  }
 };
