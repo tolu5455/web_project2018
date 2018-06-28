@@ -2481,3 +2481,327 @@ exports.updatetk = function (req, res) {
     );
   }
 };
+
+
+exports.client_information = function(req, res) {
+  if (req.isAuthenticated()) {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+  } else {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+  }
+  async.parallel(
+    {
+      nhasanxuat: function(callback) {
+        Nhasanxuat.find().exec(callback);
+      },
+      laptops: function(callback) {
+        Laptop.find({}, "ten hinh giaban")
+          .populate("nhasanxuat")
+          .exec(callback);
+      },
+      user: function(callback) {
+        User.findOne({
+          name: username
+        }).exec(callback);
+      }
+    },
+    function(err, results) {
+      if (err) {
+        return next(err);
+      }
+      if (results.nhasanxuat == null) {
+        var err = new Error("Nha san xuat not found");
+        err.status = 404;
+        return next(err);
+      }
+      var _hovaten = results.user.name;
+      var _gioitinh=results.user.sex;
+      var _ngaysinh=results.user.birthday;
+      var _diachi=results.user.address;
+      var _sdt=results.user.phone;
+      res.render("client_information", {
+        laptop_list: results.laptops,
+        nhasanxuat_list: results.nhasanxuat,
+        userurl: userurl,
+        username: results.user.name,
+        hovaten1:_hovaten,
+        gioitinh1:_gioitinh,
+        ngaysinh1:_ngaysinh,
+        diachi1:_diachi,
+        sdt1:_sdt,
+        display1: dp1,
+        display2: dp2,
+        display3: dp3,
+        display4: dp4
+      });
+    }
+  );
+};
+
+exports.saveClient_information = function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    var _hovaten = req.body.hovaten;
+    var _sdt = req.body.sdt;
+    var _gioitinh = req.body.gioitinh;
+    var _ngaysinh = req.body.ngaysinh;
+    var _diachi = req.body.diachi;
+
+    async.series(
+      {
+        clientupdate: function(callback) {
+          User.findOne(
+            {
+              name:username
+            },
+            function(err, user) {
+              if (err) return next(err);
+              if (user == null) {
+                var err = new Error("Không tìm thấy user");
+                err.status = 404;
+                return next(err);
+              }
+              User.findOneAndUpdate(
+                {
+                  name:username
+                },
+                {
+                  $set: {
+                    name: _hovaten,
+                    phone: _sdt,
+                    sex: _gioitinh,
+                    birthday: _ngaysinh,
+                    address: _diachi
+                  }
+                },
+                {
+                  new: true
+                },
+                function(err, user) {
+                  if (err) return next(err);
+                }
+              );
+            }
+          ).exec(callback);
+        },
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        user: function(callback) {
+          User.findOne({
+            name: _hovaten
+          }).exec(callback);
+        },
+        updateusername:function(callback){
+          username=_hovaten;
+          callback();
+        }
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        res.render("client_information", {
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          thongbao: "Lưu thông tin thành công",
+          userurl: userurl,
+          username: results.user.name,
+          hovaten1:_hovaten,
+          gioitinh1:_gioitinh,
+          ngaysinh1:_ngaysinh,
+          diachi1:_diachi,
+          sdt1:_sdt,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
+};
+
+
+exports.changePassword=function(req,res){
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    async.parallel(
+      {
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        user: function(callback) {
+          User.findOne({
+            username: req.params.username
+          }).exec(callback);
+        }
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        res.render("doimatkhau", {
+          laptop_list: results.laptops,
+          nhasanxuat_list: results.nhasanxuat,
+          userurl: userurl,
+          username: username,
+          display1: dp1,
+          display2: dp2,
+          display3: dp3,
+          display4: dp4
+        });
+      }
+    );
+  }
+};
+
+
+exports.doChangepassword = function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    dp1 = "";
+    dp2 = "";
+    dp3 = "none";
+    dp4 = "none";
+    res.redirect("/auth/login");
+  } else {
+    dp1 = "none";
+    dp2 = "none";
+    dp3 = "";
+    dp4 = "";
+    var oldpassword=req.body.oldpass;
+    var newpassword=req.body.newpass;
+    var confirmpassword=req.body.confirm;
+
+    async.series(
+      {
+        nhasanxuat: function(callback) {
+          Nhasanxuat.find().exec(callback);
+        },
+        laptops: function(callback) {
+          Laptop.find()
+            .populate("nhasanxuat")
+            .exec(callback);
+        },
+        user: function(callback) {
+          User.findOne({
+            username: req.params.username
+          }).exec(callback);
+        }
+      },
+      function(err, results) {
+        if (err) {
+          return next(err);
+        }
+        if (results.nhasanxuat == null) {
+          var err = new Error("Nha san xuat not found");
+          err.status = 404;
+          return next(err);
+        }
+        if(oldpassword=="" || newpassword==""||confirmpassword==""){
+          res.render("doimatkhau", {
+            laptop_list: results.laptops,
+            nhasanxuat_list: results.nhasanxuat,
+            userurl: userurl,
+            username: username,
+            display1: dp1,
+            display2: dp2,
+            display3: dp3,
+            display4: dp4,
+            thongbao: "Bạn phải điền đủ dữ liệu vào các ô"
+          });
+        }
+        else{
+
+          if(newpassword==confirmpassword){
+            User.findById(req.user._id).exec(function(err,user){
+              user.changePassword(oldpassword,newpassword,function(err){
+                if(err){
+                  res.render("doimatkhau", {
+                    laptop_list: results.laptops,
+                    nhasanxuat_list: results.nhasanxuat,
+                    userurl: userurl,
+                    username: username,
+                    display1: dp1,
+                    display2: dp2,
+                    display3: dp3,
+                    display4: dp4,
+                    thongbao: "Mật khẩu cũ không đúng , hãy thử lại !"
+                  });
+                }
+                res.render("doimatkhau", {
+                  laptop_list: results.laptops,
+                  nhasanxuat_list: results.nhasanxuat,
+                  userurl: userurl,
+                  username: username,
+                  display1: dp1,
+                  display2: dp2,
+                  display3: dp3,
+                  display4: dp4,
+                  thongbao: "Đổi mật khẩu thành công"
+                });  
+              })
+            })
+        }
+        else{
+          res.render("doimatkhau", {
+            laptop_list: results.laptops,
+            nhasanxuat_list: results.nhasanxuat,
+            userurl: userurl,
+            username: username,
+            display1: dp1,
+            display2: dp2,
+            display3: dp3,
+            display4: dp4,
+            thongbao: "Mật khẩu xác nhận không đúng"
+          });
+        }
+        }
+      }
+    );
+  }
+};

@@ -66,4 +66,16 @@ router.get('/removetkform', laptop_controller.removetk);
 router.get('/updatetkform', laptop_controller.updatetk);
 
 router.post('/comment', laptop_controller.comment)
+
+//go to client information
+router.get('/user/:id',laptop_controller.client_information);
+
+router.post('/saveinformation',laptop_controller.saveClient_information);
+
+//change password
+router.get('/doimatkhau', laptop_controller.changePassword);
+
+router.post('/doimatkhau',laptop_controller.doChangepassword);
+
+
 module.exports = router;
