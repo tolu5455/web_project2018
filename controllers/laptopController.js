@@ -2630,10 +2630,12 @@ exports.timkiem = function (req, res) {
   }
   var brand = req.body.brand
   brand = brand.toUpperCase()
+  var ram = req.body.ram
   console.log(brand)
   var low_pr = req.body.low_pr
   var high_pr = req.body.high_pr
   var brand2 = [];
+  var ram2 = [];
   async.series({
       nhasanxuat: function (callback) {
         Nhasanxuat.find().exec(callback);
@@ -2661,10 +2663,13 @@ exports.timkiem = function (req, res) {
       for (var i = 0; i < results.laptop.length; i++) {
         if (results.laptop[i].nhasanxuat.ten == brand) brand2.push(results.laptop[i])
       }
+      for (var i = 0; i < brand2.length; i++) {
+        if(brand2[i].ram == ram) ram2.push(brand2[i])
+      }
       res.render("list2", {
         laptop_list: results.laptops,
         nhasanxuat_list: results.nhasanxuat,
-        brand2: brand2,
+        brand2: ram2,
         userurl: userurl,
         username: username,
         display1: dp1,
