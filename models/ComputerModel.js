@@ -11,6 +11,7 @@ var computerSchema = new Schema({
   cpu: { type: String, required: [true, "CPU trống"], max: 10 },
   manhinh: { type: String, required: [true, "Màn hình trống"], max: 100 },
   soluongton: {type: Number, required: [true, "Thiếu số lượng tồn"]},
+  luotxem: {type: Number},
   nhasanxuat: { type: Schema.ObjectId, ref: "Nhasanxuat", required: true }
 });
 

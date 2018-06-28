@@ -1,0 +1,79 @@
+<style>
+    .container1 {
+        padding: 50px;
+    }
+
+    /* Full-width input fields */
+    input[type=text] {
+        width: 100%;
+        padding: 10px;
+        margin: 0px 0 10px 0;
+        display: inline-block;
+        border: groove 2px ghostwhite;
+    }
+
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    button:hover {
+        opacity: 1;
+    }
+
+    .btnupdate {
+        width: 150px;
+
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 0% auto 15% auto;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+</style>
+
+<form class="modal-content" action="/catalog/saveinformation" method="POST">
+    <div class="container1">
+        <div class="row">
+            <h1>Thông tin cá nhân</h1> <br>
+            <div style="color: rgb(0, 202, 0)">
+                    <span>{{thongbao}}</span>
+                </div>
+        </div>
+        <hr>
+        <label>
+            <b>Họ và tên</b>
+        </label>
+        <input type="text" name="hovaten" value="{{hovaten1}}">
+        <label>
+            <b>Số điện thoại</b>
+        </label>
+        <input type="text" name="sdt" value="{{sdt1}}">
+        <label>
+            <b>Giới tính</b>
+        </label>
+        <input type="text" name="gioitinh" value="{{gioitinh1}}">
+        <label>
+            <b>Ngày sinh</b>
+        </label>
+        <input type="text" name="ngaysinh" value="{{ngaysinh1}}">
+        <label>
+            <b>Địa chỉ</b>
+        </label>
+        <input type="text" name="diachi" value="{{diachi1}}">
+
+        <div class="text-center">
+            <button type="submit" class="btnupdate">Lưu</button>
+        </div>
+    </div>
+</form>

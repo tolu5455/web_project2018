@@ -56,22 +56,22 @@
         <label>
             <b>Tên tài khoản</b>
         </label>
-        <input type="text" value="{{username}}" name="tenTK" readonly>
+        <input type="text" value="{{user.username}}" name="tenTK" readonly>
         <hr>
         <label>
             <b>Tên khách hàng</b>
         </label>
-        <input type="text" placeholder="Tên khách hàng" name="tenKH" required>
+        <input type="text" value="{{user.name}}" name="tenKH" required>
         <hr>
         <label>
             <b>Số điện thoại của khách hàng</b>
         </label>
-        <input type="tel" placeholder="Số điện thoại" name="sdt" required>
+        <input type="tel" value="{{user.phone}}" name="sdt" required>
         <hr>
         <label>
             <b>Địa chỉ giao hàng</b>
         </label>
-        <input type="text" placeholder="Địa chỉ giao hàng" name="diachi" required>
+        <input type="text" value="{{user.address}}" name="diachi" required>
         <hr>
         <label>
             <b>Sản phẩm muốn mua</b>

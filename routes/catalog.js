@@ -64,6 +64,11 @@ router.get('/laptopmore30/:page', laptop_controller.laptop_more_30);
 router.get('/themtkform', laptop_controller.themtk);
 router.get('/removetkform', laptop_controller.removetk);
 router.get('/updatetkform', laptop_controller.updatetk);
+router.get('/user/:id',laptop_controller.client_information);
 
+router.post('/saveinformation',laptop_controller.saveClient_information);
 router.post('/comment', laptop_controller.comment)
+
+router.get('/timkiem',laptop_controller.timkiemform)
+router.post('/timkiem', laptop_controller.timkiem)
 module.exports = router;

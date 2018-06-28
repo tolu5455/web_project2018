@@ -1,0 +1,59 @@
+<body onload="loadPagi()">
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Sản phẩm</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="single-product-area" onload="loadPagination()">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                {{#each brand2}}
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-shop-product">
+                        <div class="product-upper">
+                            <img src="{{this.hinh}}" alt="">
+                        </div>
+                        <h2>
+                            <a href="{{this.url}}">{{this.ten}}</a>
+                        </h2>
+                        <div class="product-carousel-price">
+                            <ins>{{this.giaban}} đồng</ins>
+                        </div>
+
+                        <form action="/catalog/doCart" class="cart" method="POST">
+                            <input style="display:none" type="text" value="{{this.ten}}" name="ten">
+                            <input style="display:none" type="text" value="{{this.hinh}}" name="hinh">
+                            <input style="display:none" type="text" value="{{this.giaban}}" name="gia">
+                            <button class="add_to_cart_button" type="submit">Thêm vào giỏ</button>
+                        </form>
+                    </div>
+                </div>
+
+                {{/each}}
+            </div>
+        </div>
+        <div class="row">
+            <div id="pagination">
+
+            </div>
+        </div>
+    </div>
+    <span id="pageCount" style="display:none">{{pages}}</span>
+    <span id="pageCurrent" style="display:none">{{current}}</span>
+    <script src="/javascripts/pagination.js"></script>
+    <script>
+        function loadPagi() {
+            var chuoihtml = loadPagiHTML();
+            pagination.innerHTML = chuoihtml
+        }
+    </script>
+</body>

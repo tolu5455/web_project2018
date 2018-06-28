@@ -166,11 +166,11 @@ userController.doLogin = function (req, res, next) {
     }
     req.login(user, function (err) {
       if (err) return next(err);
-      if (user.role == "admin") {
-        res.redirect("/catalog/admin/" + req.user.username);
-      } else {
+      // if (user.role == "admin") {
+      //   res.redirect("/catalog/admin/" + req.user.username);
+      // } else {
         res.redirect("/catalog/homepage/" + req.user.username);
-      }
+      //}
     });
   })(req, res, next);
 };

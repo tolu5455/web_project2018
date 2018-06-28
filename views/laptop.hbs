@@ -55,6 +55,7 @@
                                 <h2 class="product-name">{{detail.laptop.ten}}</h2>
                                 <div class="product-inner-price">
                                     <ins>{{detail.laptop.giaban}} đồng</ins>
+                                    <i class="fa fa-eye" title="lượt xem"> {{detail.laptop.luotxem}}</i>
                                 </div>
 
                                 <form action="/catalog/doCart" class="cart" method="POST">
@@ -91,7 +92,7 @@
                                                 <div class="submit-review">
                                                     <p style="display:{{dpname}}">
                                                         <label for="name">Tên</label>
-                                                        <input name="username" type="text">
+                                                        <input name="username" type="text" required>
                                                     </p>
                                                     <p>
                                                         <label for="review">Nhận xét</label>
