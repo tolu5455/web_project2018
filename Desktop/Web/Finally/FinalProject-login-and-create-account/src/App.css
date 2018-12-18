@@ -1,0 +1,267 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.div-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.div-left {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+.div-right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.button {
+  background-color: rgb(87, 146, 161); /* Blue */
+  border: none;
+  color: rgb(87, 146, 161);
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 100px;
+  
+}
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid rgb(87, 146, 161);
+}
+.button1:hover {
+  background-color: rgb(87, 146, 161);
+  color: white;
+}
+.user-profile {
+  width: 200px;
+  height: 200px;
+  border:  5px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.user-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.follow {
+  padding-top: 8px;
+  padding-left: 100px;
+}
+.cover-div {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.cover-image {
+  width: 100%;
+
+}
+.space {
+  width: 10px;
+}
+.col-space {
+  padding-left: 80px;
+}
+.nav-item {
+  font-size: 16px;
+  font-weight: bold;
+
+  border-bottom: 2px solid rgb(255, 255, 255);
+}
+.user-info {
+
+  padding-top: 60px;
+}
+.text-center {
+  align-content: center
+}
+.nav-item-text {
+  cursor: pointer;
+  padding-top: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.nav-item-text:hover {
+  color: rgb(87, 146, 161);
+  border-bottom: 2px solid rgb(87, 146, 161);
+}
+.nav-item-text-click {
+  color: rgb(87, 146, 161);
+  border-bottom: 2px solid rgb(87, 146, 161);
+}
+body {
+  background: #e6ecf0;
+
+}
+.list-li {
+  background-color: white;
+  padding: 5px;
+  list-style: none;
+}
+.post-name {
+  font-weight: bold;
+}
+.icon-size {
+  padding-right: 50px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.cmt-icon:hover {
+  color: rgb(0, 140, 255);
+}
+.share-icon:hover {
+  color: rgb(0, 255, 149);
+}
+.like-icon:hover {
+  color: rgb(255, 30, 0);
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  margin-bottom: 30px;
+}
+.post-space {
+  padding-left: 10px;
+}
+
+.post-content {
+  cursor: pointer;
+}
+.post-content:hover {
+  background-color: whitesmoke;
+}
+.img-post {
+  padding-left: 10px;
+}
+.user-image-post {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.post-area {
+  background-color: #E8F5FD;
+}
+.txt-area {
+  width: 100%;
+  border-radius: 3px;
+  border: 2px solid #c9def0;
+  display: block;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  min-height: 80px;
+  overflow: hidden;
+  vertical-align: top;
+}
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+.cmt-image {
+
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.follow-li{
+  background-color:white;
+  height: 300px;
+  margin-bottom: 15px;
+  margin-right: -15px;
+}
+.cover-div-small {
+  width: 100%;
+  height: 90px;
+  overflow: hidden;
+}
+
+.user-profile-small {
+  width: 90px;
+  height: 90px;
+  border:  5px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.button-follow{
+  margin: 10px;
+  background-color: white;
+  color: black;
+  border: 2px solid rgb(87, 146, 161);
+  border-radius: 100px;
+  padding: 5px 25px;
+}
+.ellipsis-icon{
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.follow-name{
+  margin-left: 25px;
+  min-width: max-content
+}
+
+.follow-name a{
+  font-size: 18px;
+  font-weight: bold;
+  padding-right: 2px;
+  color: black;
+  cursor: pointer;
+}
+.h-white {
+color: rgb(255, 255, 255);
+}
+.input-login {
+  width: 400px;
+}
+.input-register {
+  width: 300px;
+}
+.create-account-link {
+  cursor: pointer;
+  color: rgb(65, 170, 240);
+}
